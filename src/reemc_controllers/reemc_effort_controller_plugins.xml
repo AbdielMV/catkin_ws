@@ -1,0 +1,10 @@
+<library path="lib/libreemc_controllers">
+
+  <class name="reemc_controllers/EffortController" type="reemc_controllers::EffortController" base_class_type="controller_interface::ControllerBase">
+    <description>
+       Effort controller with callback
+    </description>
+  </class>
+
+</library>
+

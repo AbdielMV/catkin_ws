@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>reemc_vision_tutorials</name>
+  <version>1.0.3</version>
+  <description>ROS based vision applications tutorials for the REEM-C robot</description>
+
+  <maintainer email="sai.kishor@pal-robotics.com">Sai Kishor</maintainer>
+  <license>BSD</license>
+
+  <author email="luca.marchionni@pal-robotics.com">Luca Marchionni</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>actionlib</build_depend>
+  <build_depend>control_msgs</build_depend>
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>message_filters</build_depend>
+  <build_depend>pal_camera_client</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+
+  <build_export_depend>actionlib</build_export_depend>
+  <build_export_depend>control_msgs</build_export_depend>
+  <build_export_depend>cv_bridge</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>image_transport</build_export_depend>
+  <build_export_depend>message_filters</build_export_depend>
+  <build_export_depend>pal_camera_client</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>sensor_msgs</build_export_depend>
+
+  <exec_depend>compressed_image_transport</exec_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>control_msgs</exec_depend>
+  <exec_depend>cv_bridge</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>image_transport</exec_depend>
+  <exec_depend>message_filters</exec_depend>
+  <exec_depend>pal_camera_client</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+
+  <!-- launch file depends -->
+  <exec_depend>reemc_gazebo</exec_depend>
+
+</package>

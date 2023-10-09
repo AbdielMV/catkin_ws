@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <node name="yaml_effort" pkg="reemc_controllers" type="yaml_effort" output="screen">  
+    <rosparam command="load" file="$(find reemc_controllers)/config/robot_configuration.yaml"/>
+    <param name="node_path" type="string" value="$(find reemc_controllers)" />
+  </node>
+
+</launch>

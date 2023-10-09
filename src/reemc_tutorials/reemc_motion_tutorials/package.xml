@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>reemc_motion_tutorials</name>
+  <version>1.0.3</version>
+  <description>Motion tutorials for the REEM-C robot</description>
+
+  <maintainer email="sai.kishor@pal-robotics.com">Sai Kishor</maintainer>
+  <license>BSD</license>
+
+  <author email="luca.marchionni@pal-robotics.com">Luca Marchionni</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>actionlib</build_depend>
+  <build_depend>play_motion_msgs</build_depend>
+
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>actionlib</build_export_depend>
+  <build_export_depend>play_motion_msgs</build_export_depend>
+
+  <exec_depend>axcli</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>play_motion</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>rqt_rviz</exec_depend>
+  <exec_depend>rqt_joint_trajectory_controller</exec_depend>
+  <exec_depend>rqt_current_limit_controller</exec_depend>
+</package>

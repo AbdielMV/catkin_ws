@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+	<node name="position_publisher" pkg="play_motion" type="position_publisher" output="screen">  
+        <rosparam command="load" file="$(find play_motion)/config/position_manipulation.yaml"/>
+		<param name="node_path" type="string" value="$(find play_motion)" />
+    </node> 
+</launch>

@@ -1,0 +1,145 @@
+art_number: 6
+
+art_0:
+  control_name: "left_arm_controller"
+  joints: 7
+
+  j_0:
+    name: "arm_left_1_joint"
+    position: -0.0000859627530305218
+
+  j_1:
+    name: "arm_left_2_joint"
+    position: -0.000409145995448057
+
+  j_2:
+    name: "arm_left_3_joint"
+    position: 0.000168963099603126
+
+  j_3:
+    name: "arm_left_4_joint"
+    position: 0.000203351972290378
+
+  j_4:
+    name: "arm_left_5_joint"
+    position: -0.000230701407347489
+
+  j_5:
+    name: "arm_left_6_joint"
+    position: 0.000424810791630925
+
+  j_6:
+    name: "arm_left_7_joint"
+    position: 0.0000572100662949993
+
+art_1:
+  control_name: "right_arm_controller"
+  joints: 7
+
+  j_0:
+    name: "arm_right_1_joint"
+    position: 0.0
+
+  j_1:
+    name: "arm_right_2_joint"
+    position: -0.000419489937120154
+
+  j_2:
+    name: "arm_right_3_joint"
+    position: -0.8
+
+  j_3:
+    name: "arm_right_4_joint"
+    position: 0.0
+
+  j_4:
+    name: "arm_right_5_joint"
+    position: -0.000359694701796975
+
+  j_5:
+    name: "arm_right_6_joint"
+    position: 0.000643508924385472
+
+  j_6:
+    name: "arm_right_7_joint"
+    position: -0.00017817060630243
+
+art_2:
+  control_name: "head_controller"
+  joints: 2
+
+  j_0:
+    name: "head_1_joint"
+    position: 0.5
+
+  j_1:
+    name: "head_2_joint"
+    position: -0.5
+
+art_3:
+  control_name: "torso_controller"
+  joints: 2
+
+  j_0:
+    name: "torso_1_joint"
+    position: 0.0000048366245994913
+
+  j_1:
+    name: "torso_2_joint"
+    position: -0.0000395903965308975
+
+art_4:
+  control_name: "left_leg_controller"
+  joints: 6
+
+  j_0:
+    name: "leg_left_1_joint"
+    position: -0.000473722379322084
+
+  j_1:
+    name: "leg_left_2_joint"
+    position: 0.00336405942984563
+
+  j_2:
+    name: "leg_left_3_joint"
+    position: 0.000493530808015841
+
+  j_3:
+    name: "leg_left_4_joint"
+    position: 0.000210939893343642
+
+  j_4:
+    name: "leg_left_5_joint"
+    position: 0.0000782924670268414
+
+  j_5:
+    name: "leg_left_6_joint"
+    position: -0.000939340525308197
+
+art_5:
+  control_name: "right_leg_controller"
+  joints: 6
+
+  j_0:
+    name: "leg_right_1_joint"
+    position: 0.000413180943520608
+
+  j_1:
+    name: "leg_right_2_joint"
+    position: -0.00138848798885416
+
+  j_2:
+    name: "leg_right_3_joint"
+    position: 0.000253742410291302
+
+  j_3:
+    name: "leg_right_4_joint"
+    position: 0.000203597309662129
+
+  j_4:
+    name: "leg_right_5_joint"
+    position: 0.000305263732535366
+
+  j_5:
+    name: "leg_right_6_joint"
+    position: 0.000926104611652434

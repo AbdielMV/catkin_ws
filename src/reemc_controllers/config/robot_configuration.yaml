@@ -1,0 +1,43 @@
+robot_configuration:
+  articulations: ["head", "chest", "left_arm", "right_arm", "waist", "left_leg", "right_leg"]
+  effort_topic: "/reemc/efforts"
+  head:
+    n: 1
+    j_0: "zhead"
+  left_arm:
+    n: 7
+    j_0: "LX_Hombro"
+    j_1: "LY_Hombro"
+    j_2: "LZ_Hombro"
+    j_3: "L_Antebrazo__RX28"
+    j_4: "L_RX28__Tubo"
+    j_5: "L_MX28__Arnesito"
+    j_6: "L_RX10__Mano"
+  right_arm:
+    n: 7
+    j_0: "RX_Hombro"
+    j_1: "RY_Hombro"
+    j_2: "RZ_Hombro"
+    j_3: "R_Antebrazo__RX28"
+    j_4: "R_RX28__Tubo"
+    j_5: "R_MX28__Arnesito"
+    j_6: "R_RX10__Mano"
+  waist:
+    n: 1
+    j_0: "zwaist"
+  left_leg:
+    n: 6
+    j_0: "lxfemur"
+    j_1: "lyfemur"
+    j_2: "lzfemur"
+    j_3: "lknee"
+    j_4: "lyankle"
+    j_5: "lxankle"
+  right_leg:
+    n: 6
+    j_0: "rxfemur"
+    j_1: "ryfemur"
+    j_2: "rzfemur"
+    j_3: "rknee"
+    j_4: "ryankle"
+    j_5: "rxankle"

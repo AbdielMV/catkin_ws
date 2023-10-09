@@ -1,0 +1,73 @@
+joints:
+  number: 22
+  #Right arm
+  j_0: 
+    name: "arm_right_1_joint"
+    effort: 0.0
+  j_1: 
+    name: "arm_right_2_joint"
+    effort: 0.0
+  j_2: 
+    name: "arm_right_3_joint"
+    effort: 0.0
+  j_3: 
+    name: "arm_right_4_joint"
+    effort: 0.0
+  #Left arm
+  j_4: 
+    name: "arm_left_1_joint"
+    effort: 0.0
+  j_5: 
+    name: "arm_left_2_joint"
+    effort: 0.0
+  j_6: 
+    name: "arm_left_3_joint"
+    effort: 0.0
+  j_7: 
+    name: "arm_left_4_joint"
+    effort: 0.0
+  #Torso
+  j_8: 
+    name: "torso_1_joint"
+    effort: 0.0
+  j_9: 
+    name: "torso_2_joint"
+    effort: 0.0
+  #Right Leg
+  j_10: 
+    name: "leg_right_1_joint"
+    effort: 0.0
+  j_11: 
+    name: "leg_right_2_joint"
+    effort: 0.0
+  j_12: 
+    name: "leg_right_3_joint"
+    effort: 0.0
+  j_13: 
+    name: "leg_right_4_joint"
+    effort: 0.0
+  j_14: 
+    name: "leg_right_5_joint"
+    effort: 20.0
+  j_15: 
+    name: "leg_right_6_joint"
+    effort: 0.0
+  #Leftt Leg
+  j_16: 
+    name: "leg_left_1_joint"
+    effort: 0.0
+  j_17: 
+    name: "leg_left_2_joint"
+    effort: 0.0
+  j_18: 
+    name: "leg_left_3_joint"
+    effort: 0.0
+  j_19: 
+    name: "leg_left_4_joint"
+    effort: 0.0
+  j_20: 
+    name: "leg_left_5_joint"
+    effort: 0.0
+  j_21: 
+    name: "leg_left_6_joint"
+    effort: 0.0

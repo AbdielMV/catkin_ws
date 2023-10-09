@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>reemc_tts_tutorials</name>
+  <version>1.0.3</version>
+  <description>ROS based tutorials for the REEM-C robot</description>
+
+  <maintainer email="sai.kishor@pal-robotics.com">Sai Kishor</maintainer>
+  <license>BSD</license>
+
+  <author email="luca.marchionni@pal-robotics.com">Luca Marchionni</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>actionlib</build_depend>
+  <build_depend>pal_interaction_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+
+  <build_export_depend>actionlib</build_export_depend>
+  <build_export_depend>pal_interaction_msgs</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>pal_interaction_msgs</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+
+</package>

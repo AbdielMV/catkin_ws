@@ -19,8 +19,8 @@
 //std::string name = "leg_left_1_joints";
 //float position = 0;
 //float velocity = 0;
-float error_position = 0;
-float error_velocity = 0;
+//float error_position = 0;
+//float error_velocity = 0;
 //Fixed weights (pseudo-control and input control)
 //Sigmoid function const
 //Design factor
@@ -134,16 +134,12 @@ public:
     {
       Eigen::Matrix<float, 1, 1> e_position = (position*Eigen::Matrix<float, 1, 1>::Identity()) - (rhonn_state_value*Eigen::Matrix<float, 1, 1>::Identity());
       float e_position_grados = (e_position(0,0)*180)/M_PI;
-      //std::cout << "Error position: " << e_position_grados << std::endl;
-      error_position = e_position_grados;
-      error_return = error_position;
+      error_return = e_position_grados;
       e(0,0) = e_position(0,0);
     }else{
       Eigen::Matrix<float, 1, 1> e_velocity = (velocity*Eigen::Matrix<float, 1, 1>::Identity()) - (rhonn_state_value*Eigen::Matrix<float, 1, 1>::Identity());
       float e_velocity_grados = (e_velocity(0,0)*180)/M_PI;
-      //std::cout << "Error velocity: " << e_velocity_grados << std::endl;
-      error_velocity = e_velocity_grados;
-      error_return = error_velocity;
+      error_return = e_velocity_grados;
       e(0,1) = e_velocity(0,0);
     }
     return error_return;

@@ -169,7 +169,7 @@ private:
 //Node class
 class MyNode{
   public:
-    MyNode(ros::NodeHandle& nh) : loop_rate(10) {
+    MyNode(ros::NodeHandle& nh) : loop_rate(10000) {
       // Initialize ROS node handle, subscriber, and publisher
       nh_ = nh;
       subscriber = nh_.subscribe("/robot_states", 100, &MyNode::subscriberCallback, this);
@@ -209,27 +209,31 @@ class MyNode{
       whole_body_state_msgs::WholeBodyState position_msg;
       whole_body_state_msgs::Rhonn art_estimation;
 
-      // Process the incoming message
-      name = msg.joints[0].name;
-      position = msg.joints[0].position;
-      velocity = msg.joints[0].velocity;
+      for (size_t i = 0; i < 30; i++)
+      {
+        // Process the incoming message
+        name = msg.joints[i].name;
+        position = msg.joints[i].position;
+        velocity = msg.joints[i].velocity;
 
-      // Create a message to publish
-      std::cout << "Neurona 1" << std::endl;
-      neuron_1_value = neuron_1.prediction_state(position, velocity);
-      art_estimation.error_w1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
-      efk_object_1.calculate_new_weights(neuron_1);
-      art_estimation.name = name;
-      art_estimation.position = neuron_1_value;
+        // Create a message to publish
+        std::cout << "Neurona 1" << std::endl;
+        neuron_1_value = neuron_1.prediction_state(position, velocity);
+        art_estimation.error_w1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
+        efk_object_1.calculate_new_weights(neuron_1);
+        art_estimation.name = name;
+        art_estimation.position = neuron_1_value;
 
-      std::cout << "Neurona 2" << std::endl;
-      neuron_2_value = neuron_2.prediction_state(position, velocity);
-      art_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
-      efk_object_2.calculate_new_weights(neuron_2);
-      art_estimation.velocity = neuron_2_value;
+        std::cout << "Neurona 2" << std::endl;
+        neuron_2_value = neuron_2.prediction_state(position, velocity);
+        art_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
+        efk_object_2.calculate_new_weights(neuron_2);
+        art_estimation.velocity = neuron_2_value;
 
-      position_msg.rhonn.push_back(art_estimation);
+        position_msg.rhonn.push_back(art_estimation);
 
+      }
+      
       // Publish the message
       publisher.publish(position_msg);
     }

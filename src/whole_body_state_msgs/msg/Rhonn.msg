@@ -17,3 +17,4 @@ float64 position
 float64 velocity
 float64 error_w1
 float64 error_w2
+float64 effort

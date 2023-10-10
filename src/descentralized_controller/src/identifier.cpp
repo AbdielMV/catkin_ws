@@ -11,8 +11,8 @@
 #include <whole_body_state_msgs/WholeBodyState.h>
 #include <whole_body_state_msgs/Rhonn.h>
 
-//#include "Rhonn.h" // Include the Rhonn header
-// #include "Efk.h"   // Include the Efk header
+#include "Rhonn.h" // Include the Rhonn header
+#include "Efk.h"   // Include the Efk header
 
 
 //Global variable
@@ -28,11 +28,11 @@
 //float u = 1;
 
 //Function declaration
-float activation_function(float state);
-void subscriberCallback(const whole_body_state_msgs::WholeBodyState& msg);
+// float activation_function(float state);
+// void subscriberCallback(const whole_body_state_msgs::WholeBodyState& msg);
 
 //RHONN class
-class Rhonn{
+/* class Rhonn{
 public:
   //Default constructor
   Rhonn(){
@@ -97,11 +97,11 @@ private:
   int neuron;
   float W1_fixed;
   float W2_fixed;
-  int u;
-};
+  float u;
+}; */
 
 // Another class (or any external code) that wants to modify w_weight HERE GOES THE EFK
-class Efk {
+/* class Efk {
 public:
   Efk(){
     //WTF? x2
@@ -143,7 +143,6 @@ public:
       e(0,1) = e_velocity(0,0);
     }
     return error_return;
-    //std::cout << "Error matrix: " << e << std::endl;
   }
 
   void update_values(){
@@ -165,16 +164,16 @@ private:
   int neuron;
   float etha;
   float error_return;
-};
+}; */
 
 //Node class
 class MyNode{
   public:
-    MyNode(ros::NodeHandle& nh) : loop_rate(100000) {
+    MyNode(ros::NodeHandle& nh) : loop_rate(10) {
       // Initialize ROS node handle, subscriber, and publisher
       nh_ = nh;
-      subscriber = nh_.subscribe("/robot_states", 10, &MyNode::subscriberCallback, this);
-      publisher = nh_.advertise<whole_body_state_msgs::WholeBodyState>("/reemc/effort", 10);
+      subscriber = nh_.subscribe("/robot_states", 100, &MyNode::subscriberCallback, this);
+      publisher = nh_.advertise<whole_body_state_msgs::WholeBodyState>("/reemc/effort", 100);
 
       // Init RHONN values (inputs and weights) C ares inputs and W weights
       Eigen::Matrix<float, 2, 1> C1;
@@ -188,13 +187,13 @@ class MyNode{
       Eigen::Matrix<float, 3, 1> W2 = C2;
 
       // Init values of EFK trainning (P, Q and R)
-      Eigen::Matrix<float, 1, 1> R1 = 1e8*Eigen::Matrix<float, 1, 1>::Identity();
-      Eigen::Matrix<float, 2, 2> Q1 = 1e7*Eigen::Matrix<float, 2, 2>::Identity();
-      Eigen::Matrix<float, 2, 2> P1 = 1e10*Eigen::Matrix<float, 2, 2>::Identity();
+      Eigen::Matrix<float, 1, 1> R1 = 1e-8*Eigen::Matrix<float, 1, 1>::Identity();
+      Eigen::Matrix<float, 2, 2> Q1 = 1e-7*Eigen::Matrix<float, 2, 2>::Identity();
+      Eigen::Matrix<float, 2, 2> P1 = 1e-10*Eigen::Matrix<float, 2, 2>::Identity();
 
-      Eigen::Matrix<float, 1, 1> R2 = 1e8*Eigen::Matrix<float, 1, 1>::Identity();
-      Eigen::Matrix<float, 3, 3> Q2 = 1e7*Eigen::Matrix<float, 3, 3>::Identity();
-      Eigen::Matrix<float, 3, 3> P2 = 1e10*Eigen::Matrix<float, 3, 3>::Identity();
+      Eigen::Matrix<float, 1, 1> R2 = 1e-8*Eigen::Matrix<float, 1, 1>::Identity();
+      Eigen::Matrix<float, 3, 3> Q2 = 1e-7*Eigen::Matrix<float, 3, 3>::Identity();
+      Eigen::Matrix<float, 3, 3> P2 = 1e-10*Eigen::Matrix<float, 3, 3>::Identity();
 
       // Create object Rhonn
       neuron_1 = Rhonn(C1,W1,1);
@@ -216,12 +215,14 @@ class MyNode{
       velocity = msg.joints[0].velocity;
 
       // Create a message to publish
+      std::cout << "Neurona 1" << std::endl;
       neuron_1_value = neuron_1.prediction_state(position, velocity);
       art_estimation.error_w1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
       efk_object_1.calculate_new_weights(neuron_1);
       art_estimation.name = name;
       art_estimation.position = neuron_1_value;
 
+      std::cout << "Neurona 2" << std::endl;
       neuron_2_value = neuron_2.prediction_state(position, velocity);
       art_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
       efk_object_2.calculate_new_weights(neuron_2);
@@ -360,13 +361,6 @@ int main(int argc, char** argv) {
 
   return 0;
 } */
-
-
-//Function definition
-float activation_function(float state){
-  float betha = 0.7;
-  return 1.0 / (1.0 + std::exp(-betha*state));
-}
 
 /* // Callback function for the subscriber
 void subscriberCallback(const whole_body_state_msgs::WholeBodyState& msg) {

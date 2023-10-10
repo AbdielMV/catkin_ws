@@ -142,7 +142,7 @@ add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-add_executable(identifier src/identifier.cpp)
+add_executable(identifier src/identifier.cpp src/Rhonn.cpp src/Efk.cpp)
 target_link_libraries(identifier ${catkin_LIBRARIES})
 add_dependencies(identifier ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 

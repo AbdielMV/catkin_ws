@@ -126,7 +126,7 @@ def talker():
 #   x = wbs._wb_iface._model.njoints - 2
 #   print(x)
 #   print(wbs._wb_iface._msg.joints)
-   rate = rospy.Rate(10) # 10hz
+   rate = rospy.Rate(100000) # 10hz
 
 
    while not rospy.is_shutdown():

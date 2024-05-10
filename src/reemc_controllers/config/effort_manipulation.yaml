@@ -3,7 +3,7 @@ joints:
   #Right arm
   j_0: 
     name: "arm_right_1_joint"
-    effort: 0.0
+    effort: 13.0
   j_1: 
     name: "arm_right_2_joint"
     effort: 0.0
@@ -48,7 +48,7 @@ joints:
     effort: 0.0
   j_14: 
     name: "leg_right_5_joint"
-    effort: 20.0
+    effort: 0.0
   j_15: 
     name: "leg_right_6_joint"
     effort: 0.0

@@ -12,6 +12,9 @@ public:
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> getInputs();
     int getNeuron();
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> getWeights();
+    void control_law(float x_1, float x_2);
+    void fx1_value(float x_neuron_1); //This is for pass the fx1 value to Neuron 1
+    float getControlLaw();
 
 private:
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> z_input;
@@ -20,5 +23,6 @@ private:
     float W1_fixed;
     float W2_fixed;
     float u;
-    Eigen::Matrix<float, 2, 1> f_x;
+    float fx_1;
+    float fx_2;
 };

@@ -25,4 +25,6 @@ private:
   int neuron;
   float etha;
   float error_return;
+  float error_1;
+  float error_2;
 };

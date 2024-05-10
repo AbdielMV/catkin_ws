@@ -40,8 +40,7 @@ callback_torque_control:
   
   type: "reemc_controllers/EffortController"
   joints:
-    - leg_right_1_joint
-    - leg_left_1_joint
+    - arm_right_1_joint
 
 
   

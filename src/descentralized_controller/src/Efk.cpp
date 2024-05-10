@@ -18,9 +18,9 @@ void Efk::calculate_new_weights(Rhonn& rhonn_object) {
     k = p_now*h*m;
     if (neuron == 1)
     {
-      w_next = w_now + (etha*k*e(0,0));
+      w_next = w_now + (etha*k*error_1);
     }else{
-      w_next = w_now + (etha*k*e(0,1));
+      w_next = w_now + (etha*k*error_2);
     }
     p_next = p_now - (k*h.transpose()*p_now) + q_now;
     update_values();
@@ -35,12 +35,12 @@ float Efk::error_estimation(float rhonn_state_value, float position, float veloc
       Eigen::Matrix<float, 1, 1> e_position = (position*Eigen::Matrix<float, 1, 1>::Identity()) - (rhonn_state_value*Eigen::Matrix<float, 1, 1>::Identity());
       float e_position_grados = (e_position(0,0)*180)/M_PI;
       error_return = e_position_grados;
-      e(0,0) = e_position(0,0);
+      error_1 = e_position(0,0);
     }else{
       Eigen::Matrix<float, 1, 1> e_velocity = (velocity*Eigen::Matrix<float, 1, 1>::Identity()) - (rhonn_state_value*Eigen::Matrix<float, 1, 1>::Identity());
       float e_velocity_grados = (e_velocity(0,0)*180)/M_PI;
       error_return = e_velocity_grados;
-      e(0,1) = e_velocity(0,0);
+      error_2 = e_velocity(0,0);
     }
     return error_return;
   }

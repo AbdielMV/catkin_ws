@@ -17,6 +17,7 @@
 #include <whole_body_state_msgs/JointState.h>
 #include <whole_body_state_msgs/WholeBodyTrajectory.h>
 #include <whole_body_state_msgs/WholeBodyState.h>
+#include <whole_body_state_msgs/Rhonn.h>
 
 using namespace ddynamic_reconfigure;
 

@@ -34,12 +34,17 @@ class MyNode{
       // Eigen::Matrix<float, 2, 1> W1 = C1;
       // Eigen::Matrix<float, 3, 1> W2 = C2;
       Eigen::Matrix<float, 2, 1> W1;
-      W1 << 3.66483,
-            -1.83241;
+      /* W1 << 3.66483,
+            -1.83241; */
+      W1 << 0,
+            0;
       Eigen::Matrix<float, 3, 1> W2;
-      W2 << 6.64743,
+      /* W2 << 6.64743,
             -13.3101,
-            6.64774;
+            6.64774; */
+      W2 << 0,
+            0,
+            0;
 
       // Init values of EFK trainning (P, Q and R)
       Eigen::Matrix<float, 1, 1> R1 = 1e-8*Eigen::Matrix<float, 1, 1>::Identity();
@@ -62,7 +67,7 @@ class MyNode{
     void subscriberCallback(const whole_body_state_msgs::WholeBodyState& msg) {
       // Create a message to publish
       whole_body_state_msgs::WholeBodyState position_msg;
-      whole_body_state_msgs::Rhonn art_estimation;
+      whole_body_state_msgs::JointState art_estimation;
 
       //for (size_t i = 0; i < 30; i++)
       //{
@@ -75,7 +80,7 @@ class MyNode{
         // Create a message to publish
         std::cout << "Neurona 1" << std::endl;
         neuron_1_value = neuron_1.prediction_state(position, velocity);
-        art_estimation.error_w1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
+        //art_estimation.error_w1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
         efk_object_1.error_estimation(neuron_1_value,position,velocity);
         efk_object_1.calculate_new_weights(neuron_1);
         art_estimation.name = name;
@@ -84,13 +89,14 @@ class MyNode{
         std::cout << "Neurona 2" << std::endl;
         neuron_2.fx1_value(neuron_1_value);
         neuron_2_value = neuron_2.prediction_state(position, velocity);
-        art_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
+        //art_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
         efk_object_2.error_estimation(neuron_2_value,position,velocity);
         efk_object_2.calculate_new_weights(neuron_2);
         art_estimation.velocity = neuron_2_value;
         art_estimation.effort = neuron_2.getControlLaw();
 
-        position_msg.rhonn.push_back(art_estimation);
+        //Has to be JointState (joints) NOT Rhonn (rhonn)
+        position_msg.joints.push_back(art_estimation);
 
       //}
       

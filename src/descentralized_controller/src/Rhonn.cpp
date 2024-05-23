@@ -18,6 +18,10 @@ Rhonn::Rhonn(Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> c_input, Eigen
     W1_fixed = 0.001;
     W2_fixed = 1;
     u = 0;
+    error_x2_old = 0;
+    sign_ex1 = 0;
+    sign_ex2 = 0;
+    counter = 0;
 }
 //Prediction state
 float Rhonn::prediction_state (float position, float velocity){
@@ -25,6 +29,8 @@ float Rhonn::prediction_state (float position, float velocity){
     float state_final_prediction;
     update_input(position,velocity);
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> w_transposed = w_weight.transpose();
+    std::cout << "Valor de z_input: " << z_input << std::endl;
+    std::cout << "Valor de w_transposed: " << w_transposed << std::endl;
     Eigen::Matrix<float, 1, 1> state = w_transposed*z_input;
     float value_from_prediction = state(0,0);
     if (neuron == 1)
@@ -38,9 +44,7 @@ float Rhonn::prediction_state (float position, float velocity){
       fx_2 = value_from_prediction;
       control_law(fx_1,fx_2);
     }
-    std::cout << "Valor fx1: " << fx_1 << std::endl;
-    std::cout << "Valor fx2: " << fx_2 << std::endl;
-    std::cout << "Ley de control u: " << u << std::endl;
+    // std::cout << "Ley de control u: " << u << std::endl;
     return state_final_prediction;
 }
 
@@ -86,25 +90,32 @@ float activation_function(float state){
 }
 
 void Rhonn::control_law(float x_1, float x_2){
-  float set_point = 1.10;
-  float error_1 = x_1 - set_point;
-  std::cout << "Error de seguimiento (st-x): " << error_1 << std::endl;
-  float error_2 = x_2 - 0;
-  int sign_e1;
-  int sign_e2;
-  if (error_1 < 0)
-  {
-    sign_e1 = -1;
-  }else{
-    sign_e1 = 1;
-  }
-  if (error_2 < 0)
-  {
-    sign_e2 = -1;
-  }else{
-    sign_e2 = 1;
-  }
-  double k1 = 0.7;
-  double k2 = 0.5;
-  u = k1*std::abs(error_1)*sign_e1 + k2*std::abs(error_2)*sign_e2;
+
+    float dt = 0.001;
+    float set_point = 1.79538302136;
+    error_x2_old = error_x2;
+    error_x1 = x_1 - set_point;
+    error_x2 = x_2 - 0;
+    if (error_x1 < 0)
+    {
+      sign_ex1 = -1;
+    }else{
+      sign_ex1 = 1;
+    }
+    if (error_x2 < 0)
+    {
+      sign_ex2 = -1;
+    }else{
+      sign_ex2 = 1;
+    }
+    double k1 = 1.2;
+    double k2 = 1.5;
+    float angulo_temporal = counter*M_PI/180;
+    std::cout << "El angulo es: " << angulo_temporal << std::endl;
+    if (angulo_temporal > 360){
+      angulo_temporal = 0;  
+    }
+    u = 10*sin(angulo_temporal*0.1);
+    counter = counter + 1;
+
 }

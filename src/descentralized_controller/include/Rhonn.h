@@ -25,4 +25,10 @@ private:
     float u;
     float fx_1;
     float fx_2;
+    float error_x1;
+    float error_x2;
+    float error_x2_old;
+    float counter;
+    int sign_ex1;
+    int sign_ex2;
 };

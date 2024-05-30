@@ -67,41 +67,55 @@ class MyNode{
     void subscriberCallback(const whole_body_state_msgs::WholeBodyState& msg) {
       // Create a message to publish
       whole_body_state_msgs::WholeBodyState position_msg;
-      whole_body_state_msgs::JointState art_estimation;
+      whole_body_state_msgs::JointState joint_estimation;
+      whole_body_state_msgs::Rhonn rhonn_estimation;
 
       //for (size_t i = 0; i < 30; i++)
       //{
-        // Process the incoming message
-        //arm_right_1 is the 21 of 30 joints
-        name = msg.joints[21].name;
-        position = msg.joints[21].position;
-        velocity = msg.joints[21].velocity;
+            // Process the incoming message
+            //arm_right_1 is the 21 of 30 joints
+            name = msg.joints[21].name;
+            position = (msg.joints[21].position*180)/M_PI;
+            velocity = (msg.joints[21].velocity*180)/M_PI;
 
-        // Create a message to publish
-        std::cout << "Neurona 1" << std::endl;
-        neuron_1_value = neuron_1.prediction_state(position, velocity);
-        //art_estimation.error_w1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
-        efk_object_1.error_estimation(neuron_1_value,position,velocity);
-        efk_object_1.calculate_new_weights(neuron_1);
-        art_estimation.name = name;
-        art_estimation.position = neuron_1_value;
+            // Create a message to publish
+            std::cout << "Neurona 1" << std::endl;
+            observer_1_value = neuron_1.observer_state(position,velocity);
+            neuron_1_value = neuron_1.prediction_state(position, velocity);
+            //rhonn_estimation.error_w1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
+            error_1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
+            efk_object_1.calculate_new_weights(neuron_1);
 
-        std::cout << "Neurona 2" << std::endl;
-        neuron_2.fx1_value(neuron_1_value);
-        neuron_2_value = neuron_2.prediction_state(position, velocity);
-        //art_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
-        efk_object_2.error_estimation(neuron_2_value,position,velocity);
-        efk_object_2.calculate_new_weights(neuron_2);
-        art_estimation.velocity = neuron_2_value;
-        art_estimation.effort = neuron_2.getControlLaw();
+            std::cout << "Neurona 2" << std::endl;
+            neuron_2.fx0_value(neuron_1_value);
+            observer_2_value = neuron_2.observer_state(position,velocity);
+            neuron_2_value = neuron_2.prediction_state(position, observer_2_value);
+            //rhonn_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
+            error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
+            efk_object_2.calculate_new_weights(neuron_2);
 
-        //Has to be JointState (joints) NOT Rhonn (rhonn)
-        position_msg.joints.push_back(art_estimation);
+            //Construction of Message
+            rhonn_estimation.name = name;
+            rhonn_estimation.position = neuron_1_value;
+            rhonn_estimation.velocity = neuron_2_value;
+            rhonn_estimation.error_w1 = error_1;
+            rhonn_estimation.error_w2 = error_2;
+            rhonn_estimation.obs_position = observer_1_value;
+            rhonn_estimation.obs_velocity = observer_2_value;
 
+            joint_estimation.name = name;
+            joint_estimation.position = position;
+            joint_estimation.velocity = velocity;
+            joint_estimation.effort = neuron_2.getControlLaw();
+
+            //Has to be JointState (joints) NOT Rhonn (rhonn)
+            position_msg.joints.push_back(joint_estimation);
+            position_msg.rhonn.push_back(rhonn_estimation);
       //}
       
       // Publish the message
       position_msg.header.stamp = ros::Time::now();
+      publisher.publish(position_msg);
       publisher.publish(position_msg);
     }
 
@@ -125,7 +139,11 @@ class MyNode{
     float position;
     float velocity;
     float neuron_1_value;
+    float observer_1_value;
     float neuron_2_value;
+    float observer_2_value;
+    float error_1;
+    float error_2;
     Rhonn neuron_1;
     Rhonn neuron_2;
     Efk efk_object_1;

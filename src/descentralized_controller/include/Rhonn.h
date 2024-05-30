@@ -6,6 +6,7 @@ class Rhonn {
 public:
     Rhonn();
     Rhonn(Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> c_input, Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> w_input, int number);
+    float observer_state(float position, float velocity);
     float prediction_state(float position, float velocity);
     void update_input(float position, float velocity);
     void updateWeights(const Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic>& new_weights);
@@ -13,7 +14,7 @@ public:
     int getNeuron();
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> getWeights();
     void control_law(float x_1, float x_2);
-    void fx1_value(float x_neuron_1); //This is for pass the fx1 value to Neuron 1
+    void fx0_value(float x_neuron_1); //This is for pass the fx1 value to Neuron 1
     float getControlLaw();
 
 private:
@@ -23,12 +24,22 @@ private:
     float W1_fixed;
     float W2_fixed;
     float u;
+    float fx_0;
     float fx_1;
-    float fx_2;
+    float error_x0;
     float error_x1;
-    float error_x2;
-    float error_x2_old;
+    float error_x1_old;
     float counter;
+    int sign_ex0;
     int sign_ex1;
-    int sign_ex2;
+    float observer_x0_actual;
+    float observer_x1_actual;
+    float observer_x0_prediction;
+    float observer_x1_prediction;
+    float error_obs1;
+    float error_obs2;
+    int sign_eobs1;
+    int sign_eobs2;
+    float v1;
+    float v2;
 };

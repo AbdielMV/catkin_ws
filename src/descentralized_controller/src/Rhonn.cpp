@@ -45,21 +45,6 @@ float Rhonn::observer_state(float position, float velocity){
     }else{
       sign_eobs2 = 1;
     }
- /*  float v1_equival = (error_obs1)*0.99;
-  float v2_equival = (error_obs2)*0.99;
-  float u0 = 100; //cota de la superficie
-  if (abs(v1_equival) < u0)
-  {
-    v1 = v1_equival;
-  }else{
-    v1 = (u0*v1_equival)/abs(v1_equival);
-  }
-  if (abs(v2_equival) < u0)
-  {
-    v2 = v2_equival;
-  }else{
-    v2 = (u0*v1_equival)/abs(v2_equival);
-  } */
   v1 = -k1*sqrt(abs(error_obs1))*sign_eobs1;
   v2 = -k2*sign_eobs1;
   observer_x0_prediction = position + v1;
@@ -141,8 +126,8 @@ float activation_function(float state){
 
 void Rhonn::control_law(float x_1, float x_2){
 
-    float set_point = 1.79538302136;
-/*     error_x1_old = error_x1;
+    float set_point = 45;
+    error_x1_old = error_x1;
     error_x0 = x_1 - set_point;
     error_x1 = x_2 - 0;
     if (error_x0 < 0)
@@ -157,9 +142,10 @@ void Rhonn::control_law(float x_1, float x_2){
     }else{
       sign_ex1 = 1;
     }
-    double k1 = 1.2;
-    double k2 = 1.5; */
-    float angulo_temporal = counter*M_PI/180;
+    double k1 = 1.5;
+    double k2 = 1.7;
+    u = -(k1*pow(abs(error_x1),0.5)*sign_ex1)-(k2*pow(abs(error_x1),0.5/(2-0.5))*sign_ex0);
+/*     float angulo_temporal = counter*M_PI/180;
     std::cout << "El angulo es: " << angulo_temporal << std::endl;
     if (angulo_temporal > 360){
       counter = 0;  
@@ -169,6 +155,6 @@ void Rhonn::control_law(float x_1, float x_2){
     {
       u = -10;
     }
-    counter = counter + 1;
+    counter = counter + 1; */
 
 }

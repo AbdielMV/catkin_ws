@@ -10,7 +10,7 @@ Efk::Efk(Eigen::Matrix<float, 1, 1> r_value, Eigen::Matrix<float, Eigen::Dynamic
 
 // Some function in the Efk class that takes a Rhonn object as a parameter
 void Efk::calculate_new_weights(Rhonn& rhonn_object) {
-    etha = 0.7;
+    etha = 0.2;
     h = rhonn_object.getInputs();
     neuron = rhonn_object.getNeuron();
     w_now = rhonn_object.getWeights();
@@ -29,20 +29,20 @@ void Efk::calculate_new_weights(Rhonn& rhonn_object) {
   }
 
 // Error estimation method
-float Efk::error_estimation(float rhonn_state_value, float position, float velocity){ //Se calcula el valor del error y se coloca en vector (esto pudiera no ser necesario)
+float Efk::error_estimation(float rhonn_state_value, float position, float velocity, int neuron){ //Se calcula el valor del error y se coloca en vector (esto pudiera no ser necesario)
     if (neuron == 1)
     {
       Eigen::Matrix<float, 1, 1> e_position = (position*Eigen::Matrix<float, 1, 1>::Identity()) - (rhonn_state_value*Eigen::Matrix<float, 1, 1>::Identity());
       //float e_position_grados = (e_position(0,0)*180)/M_PI;
       error_1 = e_position(0,0);
       error_return = error_1;
-      //std::cout << "Error identificacion x1: " << e_position_grados << std::endl;
+      std::cout << "Error identificacion x1: " << error_1 << std::endl;
     }else{
       Eigen::Matrix<float, 1, 1> e_velocity = (velocity*Eigen::Matrix<float, 1, 1>::Identity()) - (rhonn_state_value*Eigen::Matrix<float, 1, 1>::Identity());
       //float e_velocity_grados = (e_velocity(0,0)*180)/M_PI;
       error_2 = e_velocity(0,0);
       error_return = error_2;
-      //std::cout << "Error identificacion x2: " << e_velocity_grados << std::endl;
+      std::cout << "Error identificacion x2: " << error_2 << std::endl;
     }
     return error_return;
   }

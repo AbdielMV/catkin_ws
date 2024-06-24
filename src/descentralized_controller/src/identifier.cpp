@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <sstream>
 #include <cmath>
+#include <math.h>
 #include <Eigen/Dense>
 
 #include <whole_body_state_msgs/JointState.h>
@@ -34,12 +35,12 @@ class MyNode{
       // Eigen::Matrix<float, 2, 1> W1 = C1;
       // Eigen::Matrix<float, 3, 1> W2 = C2;
       Eigen::Matrix<float, 2, 1> W1;
-      /* W1 << 3.66483,
+/*       W1 << 3.66483,
             -1.83241; */
       W1 << 0,
             0;
       Eigen::Matrix<float, 3, 1> W2;
-      /* W2 << 6.64743,
+/*       W2 << 6.64743,
             -13.3101,
             6.64774; */
       W2 << 0,
@@ -47,13 +48,21 @@ class MyNode{
             0;
 
       // Init values of EFK trainning (P, Q and R)
-      Eigen::Matrix<float, 1, 1> R1 = 1e-8*Eigen::Matrix<float, 1, 1>::Identity();
+/*       Eigen::Matrix<float, 1, 1> R1 = 1e-8*Eigen::Matrix<float, 1, 1>::Identity();
       Eigen::Matrix<float, 2, 2> Q1 = 1e-7*Eigen::Matrix<float, 2, 2>::Identity();
       Eigen::Matrix<float, 2, 2> P1 = 1e-10*Eigen::Matrix<float, 2, 2>::Identity();
 
       Eigen::Matrix<float, 1, 1> R2 = 1e-8*Eigen::Matrix<float, 1, 1>::Identity();
       Eigen::Matrix<float, 3, 3> Q2 = 1e-7*Eigen::Matrix<float, 3, 3>::Identity();
-      Eigen::Matrix<float, 3, 3> P2 = 1e-10*Eigen::Matrix<float, 3, 3>::Identity();
+      Eigen::Matrix<float, 3, 3> P2 = 1e-10*Eigen::Matrix<float, 3, 3>::Identity(); */
+
+      Eigen::Matrix<float, 1, 1> R1 = 1e5*Eigen::Matrix<float, 1, 1>::Identity();
+      Eigen::Matrix<float, 2, 2> Q1 = 1e5*Eigen::Matrix<float, 2, 2>::Identity();
+      Eigen::Matrix<float, 2, 2> P1 = 1e10*Eigen::Matrix<float, 2, 2>::Identity();
+
+      Eigen::Matrix<float, 1, 1> R2 = 1e3*Eigen::Matrix<float, 1, 1>::Identity();
+      Eigen::Matrix<float, 3, 3> Q2 = 1e3*Eigen::Matrix<float, 3, 3>::Identity();
+      Eigen::Matrix<float, 3, 3> P2 = 1e10*Eigen::Matrix<float, 3, 3>::Identity();
 
       // Create object Rhonn
       neuron_1 = Rhonn(C1,W1,1);
@@ -83,16 +92,17 @@ class MyNode{
             observer_1_value = neuron_1.observer_state(position,velocity);
             neuron_1_value = neuron_1.prediction_state(position, velocity);
             //rhonn_estimation.error_w1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
-            error_1 = efk_object_1.error_estimation(neuron_1_value,position,velocity);
+            error_1 = efk_object_1.error_estimation(neuron_1_value,position,velocity,1);
             efk_object_1.calculate_new_weights(neuron_1);
 
             std::cout << "Neurona 2" << std::endl;
-            neuron_2.fx0_value(neuron_1_value);
+            neuron_2.fx0_value(neuron_1);
             observer_2_value = neuron_2.observer_state(position,velocity);
             neuron_2_value = neuron_2.prediction_state(position, observer_2_value);
             //rhonn_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
-            error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
+            error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity,2);
             efk_object_2.calculate_new_weights(neuron_2);
+            neuron_2.control_law(neuron_1, position);
 
             //Construction of Message
             rhonn_estimation.name = name;
@@ -102,6 +112,10 @@ class MyNode{
             rhonn_estimation.error_w2 = error_2;
             rhonn_estimation.obs_position = observer_1_value;
             rhonn_estimation.obs_velocity = observer_2_value;
+
+/*             std::cout << "Building message" << std::endl;
+            std::cout << "Valor X1_k+1 = " << neuron_1_value << std::endl;
+            std::cout << "Valor X2_k+1 = " << neuron_2_value << std::endl; */
 
             joint_estimation.name = name;
             joint_estimation.position = position;

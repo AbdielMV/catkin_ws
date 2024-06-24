@@ -13,17 +13,20 @@ public:
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> getInputs();
     int getNeuron();
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> getWeights();
-    void control_law(float x_1, float x_2);
-    void fx0_value(float x_neuron_1); //This is for pass the fx1 value to Neuron 1
+    void control_law(Rhonn& rhonn_object, float position);
+    void fx0_value(Rhonn& rhonn_object); //This is for pass the fx0 value to Neuron 2
     float getControlLaw();
 
 private:
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> z_input;
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> w_weight;
+    Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> w1_weight;
     int neuron;
     float W1_fixed;
     float W2_fixed;
     float u;
+    float ueq;
+    float v;
     float fx_0;
     float fx_1;
     float error_x0;
@@ -42,4 +45,12 @@ private:
     int sign_eobs2;
     float v1;
     float v2;
+    float fixed_result;
+    float state_final_prediction;
+    float fx_11;
+    float fx_12;
+    float fx_21;
+    float fx_22;
+    float fx_23;
+    float set_point;
 };

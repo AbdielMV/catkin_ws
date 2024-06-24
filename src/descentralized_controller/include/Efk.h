@@ -8,7 +8,7 @@ public:
     Efk();
     Efk(Eigen::Matrix<float, 1, 1> r_value, Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> p_value, Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> q_value);
     void calculate_new_weights(Rhonn& rhonn_object);
-    float error_estimation(float rhonn_state_value, float position, float velocity);
+    float error_estimation(float rhonn_state_value, float position, float velocity, int neuron);
     void update_values();
 
 private:

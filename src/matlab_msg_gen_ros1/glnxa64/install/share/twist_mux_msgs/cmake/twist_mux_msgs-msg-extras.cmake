@@ -1,2 +1,0 @@
-set(twist_mux_msgs_MESSAGE_FILES "msg/JoyPriorityAction.msg;msg/JoyPriorityActionGoal.msg;msg/JoyPriorityActionResult.msg;msg/JoyPriorityActionFeedback.msg;msg/JoyPriorityGoal.msg;msg/JoyPriorityResult.msg;msg/JoyPriorityFeedback.msg;msg/JoyTurboAction.msg;msg/JoyTurboActionGoal.msg;msg/JoyTurboActionResult.msg;msg/JoyTurboActionFeedback.msg;msg/JoyTurboGoal.msg;msg/JoyTurboResult.msg;msg/JoyTurboFeedback.msg")
-set(twist_mux_msgs_SERVICE_FILES "")

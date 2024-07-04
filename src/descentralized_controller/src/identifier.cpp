@@ -18,11 +18,11 @@
 //Node class
 class MyNode{
   public:
-    MyNode(ros::NodeHandle& nh) : loop_rate(10000) {
+    MyNode(ros::NodeHandle& nh) : loop_rate(100) {
       // Initialize ROS node handle, subscriber, and publisher
       nh_ = nh;
-      subscriber = nh_.subscribe("/robot_states", 100, &MyNode::subscriberCallback, this);
-      publisher = nh_.advertise<whole_body_state_msgs::WholeBodyState>("/reemc/efforts", 100);
+      subscriber = nh_.subscribe("/robot_states", 1, &MyNode::subscriberCallback, this);
+      publisher = nh_.advertise<whole_body_state_msgs::WholeBodyState>("/reemc/efforts", 1);
 
       // Init RHONN values (inputs and weights) C ares inputs and W weights
       Eigen::Matrix<float, 2, 1> C1;
@@ -46,6 +46,14 @@ class MyNode{
       W2 << 0,
             0,
             0;
+      position = 0;
+      position_y1 = 0;
+      position_y = 0;
+      position_1 = 0;
+      velocity = 0;
+      velocity_y1 = 0;
+      velocity_y = 0;
+      velocity_1 = 0;
 
       // Init values of EFK trainning (P, Q and R)
 /*       Eigen::Matrix<float, 1, 1> R1 = 1e-8*Eigen::Matrix<float, 1, 1>::Identity();
@@ -56,8 +64,8 @@ class MyNode{
       Eigen::Matrix<float, 3, 3> Q2 = 1e-7*Eigen::Matrix<float, 3, 3>::Identity();
       Eigen::Matrix<float, 3, 3> P2 = 1e-10*Eigen::Matrix<float, 3, 3>::Identity(); */
 
-      Eigen::Matrix<float, 1, 1> R1 = 1e5*Eigen::Matrix<float, 1, 1>::Identity();
-      Eigen::Matrix<float, 2, 2> Q1 = 1e5*Eigen::Matrix<float, 2, 2>::Identity();
+      Eigen::Matrix<float, 1, 1> R1 = 1e8*Eigen::Matrix<float, 1, 1>::Identity();
+      Eigen::Matrix<float, 2, 2> Q1 = 1e7*Eigen::Matrix<float, 2, 2>::Identity();
       Eigen::Matrix<float, 2, 2> P1 = 1e10*Eigen::Matrix<float, 2, 2>::Identity();
 
       Eigen::Matrix<float, 1, 1> R2 = 1e3*Eigen::Matrix<float, 1, 1>::Identity();
@@ -77,7 +85,7 @@ class MyNode{
       // Create a message to publish
       whole_body_state_msgs::WholeBodyState position_msg;
       whole_body_state_msgs::JointState joint_estimation;
-      whole_body_state_msgs::Rhonn rhonn_estimation;
+      whole_body_state_msgs::RhonnState rhonn_estimation;
 
       //for (size_t i = 0; i < 30; i++)
       //{
@@ -86,6 +94,17 @@ class MyNode{
             name = msg.joints[21].name;
             position = (msg.joints[21].position*180)/M_PI;
             velocity = (msg.joints[21].velocity*180)/M_PI;
+
+            position_y = position_y1*0.99+position_1*0.00995;
+            velocity_y = velocity_y1*0.99+velocity_1*0.00995;
+            position_1 = position;
+            velocity_1 = velocity;
+            position_y1 = position_y;
+            velocity_y1 = velocity_y;
+
+            //Change of variable for use those names
+            position = position_y;
+            velocity = velocity_y;
 
             // Create a message to publish
             std::cout << "Neurona 1" << std::endl;
@@ -102,7 +121,7 @@ class MyNode{
             //rhonn_estimation.error_w2 = efk_object_2.error_estimation(neuron_2_value,position,velocity);
             error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity,2);
             efk_object_2.calculate_new_weights(neuron_2);
-            neuron_2.control_law(neuron_1, position);
+            neuron_2.control_law(neuron_1, position, velocity);
 
             //Construction of Message
             rhonn_estimation.name = name;
@@ -130,7 +149,6 @@ class MyNode{
       // Publish the message
       position_msg.header.stamp = ros::Time::now();
       publisher.publish(position_msg);
-      publisher.publish(position_msg);
     }
 
     void run() {
@@ -151,7 +169,13 @@ class MyNode{
     ros::Rate loop_rate;
     std::string name;
     float position;
+    float position_y1;
+    float position_y;
+    float position_1;
     float velocity;
+    float velocity_y1;
+    float velocity_y;
+    float velocity_1;
     float neuron_1_value;
     float observer_1_value;
     float neuron_2_value;

@@ -13,7 +13,7 @@ public:
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> getInputs();
     int getNeuron();
     Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> getWeights();
-    void control_law(Rhonn& rhonn_object, float position);
+    void control_law(Rhonn& rhonn_object, float position, float velocity);
     void fx0_value(Rhonn& rhonn_object); //This is for pass the fx0 value to Neuron 2
     float getControlLaw();
 

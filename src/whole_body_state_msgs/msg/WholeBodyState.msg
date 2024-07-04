@@ -37,4 +37,4 @@ whole_body_state_msgs/JointState[] joints
 whole_body_state_msgs/ContactState[] contacts
 
 # This represents the rhonn states and more relevant information
-whole_body_state_msgs/Rhonn[] rhonn
+whole_body_state_msgs/RhonnState[] rhonn

@@ -10,7 +10,7 @@ Efk::Efk(Eigen::Matrix<float, 1, 1> r_value, Eigen::Matrix<float, Eigen::Dynamic
 
 // Some function in the Efk class that takes a Rhonn object as a parameter
 void Efk::calculate_new_weights(Rhonn& rhonn_object) {
-    etha = 0.2;
+    etha = 0.7;
     h = rhonn_object.getInputs();
     neuron = rhonn_object.getNeuron();
     w_now = rhonn_object.getWeights();

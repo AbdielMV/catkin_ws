@@ -23,7 +23,7 @@ Rhonn::Rhonn(Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> c_input, Eigen
     counter = 0;
     observer_x0_prediction = -0.878902;
     observer_x1_prediction = -0.076326;
-    set_point = 45;
+    set_point = 90;
 }
 //Observer filter
 float Rhonn::observer_state(float position, float velocity){
@@ -116,7 +116,7 @@ void Rhonn::update_input(float position, float velocity){
     {
       z_input(0,0) = activation_function(position);
     }else{
-      z_input(0,0) = activation_function(velocity);
+      z_input(0,0) = activation_function(position);
       z_input(1,0) = activation_function(velocity);
       //z_input(2,0) = activation_function(velocity);
     }
@@ -155,12 +155,14 @@ float activation_function(float state){
   return tanh(state);
 }
 
-void Rhonn::control_law(Rhonn& neuron1, float position){
+void Rhonn::control_law(Rhonn& neuron1, float position, float velocity){
     std::cout << "Value of fx_0= " << fx_0 << std::endl;
     std::cout << "Value of fx_1= " << fx_1 << std::endl;
     error_x1_old = error_x1;
-    error_x0 = position - set_point;
-    error_x1 = fx_1 - 0;
+    error_x0 = position - set_point; //Position
+    error_x1 = velocity - 0; //Velocity
+    std::cout << "Value of error_0= " << error_x0 << std::endl;
+    std::cout << "Value of error_1= " << error_x1 << std::endl;
     
     if (error_x0 < 0)
     {
@@ -174,10 +176,10 @@ void Rhonn::control_law(Rhonn& neuron1, float position){
     }else{
       sign_ex1 = 1;
     }
-    double k1 = 10; //0.0006
-    double k2 = 5; //0.0001
-    //v = -(k1*pow(abs(error_x1),0.5)*sign_ex1)-(k2*pow(abs(error_x0),0.5/(2-0.5))*sign_ex0);
-    v = -(k2*error_x0) - (k1*error_x1);
+    double k1 = 0.65; //0.0006
+    double k2 = 1e-8; //0.0001
+    //v = -(k1*pow(abs(error_x0),0.5)*sign_ex0)-(k2*pow(abs(error_x1),0.5/(2-0.5))*sign_ex1);
+    v = -(k1*error_x0) - (k2*error_x1);
     std::cout << "Value of V = " << v << std::endl;
     std::cout << "Value of w11 = " << neuron1.w_weight(0,0) << std::endl;
     std::cout << "Value of w12 = " << neuron1.w_weight(1,0) << std::endl;
@@ -187,25 +189,35 @@ void Rhonn::control_law(Rhonn& neuron1, float position){
     std::cout << "Value of w23 = " << w_weight(2,0) << std::endl;
     std::cout << "Value of w24 = " << W2_fixed << std::endl;
 
-    ueq = (((v + set_point - neuron1.w_weight(0,0)*activation_function(fx_0)-neuron1.w_weight(1,0))*(1/neuron1.W1_fixed))-fx_21-fx_22-fx_23)*(1/W2_fixed);
-    u = ueq * 1e-8;
-/*     if (abs(ueq) <= 10)
+    //ueq = (((v + set_point - neuron1.w_weight(0,0)*activation_function(fx_0)-neuron1.w_weight(1,0))*(1/neuron1.W1_fixed))-fx_21-fx_22-fx_23)*(1/W2_fixed);
+    
+/*     ueq = v;
+
+    if (abs(ueq) < 15)
     {
       u = ueq;
     }else{
-      u = (10*(ueq/abs(ueq)));
-    }
- */
+      u = (15*(ueq/abs(ueq)));
+    } */
 
-/*     float angulo_temporal = counter*M_PI/180;
+
+
+    float angulo_temporal = counter*M_PI/180;
     std::cout << "El angulo es: " << angulo_temporal << std::endl;
     if (angulo_temporal > 360){
       counter = 0;  
     }
-    u = 10*sin(angulo_temporal*0.1); //Valor maximo de 10 a 14
+    u = 10*sin(angulo_temporal*1); //Valor maximo de 10 a 14
     if (u < -10)
     {
       u = -10;
     }
-    counter = counter + 1; */
+    counter = counter + 1;
+
+/*     srand(time(0));
+    for (int i = 0; i < 10; i++)
+    {
+      u = (rand() %20 ) - 10;
+    } */
+    
 }

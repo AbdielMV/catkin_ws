@@ -32,7 +32,7 @@ add_message_files(
     WholeBodyState.msg
     WholeBodyTrajectory.msg
     WholeBodyController.msg
-    Rhonn.msg
+    RhonnState.msg
 )
 
 generate_messages(

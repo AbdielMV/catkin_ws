@@ -38,7 +38,7 @@ efk_object_1 = Efk(R1,P1,Q1)
 efk_object_2 = Efk(R2,P2,Q2)
 
 #Create object Controller
-control_law = Controller(neuron_1,neuron_2)
+controller_object = Controller(neuron_1,neuron_2)
 
 # Create variables for message
 position_msg = WholeBodyState()
@@ -84,6 +84,8 @@ def callback(data):
     neuron_2_value = neuron_2.prediction_state(position,velocity)
     error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity,2)
     efk_object_2.calculate_new_weights(neuron_2)
+    controller_object.control_law(position,velocity)
+    neuron_2.get_control_law(controller_object)
 
     # Construction of Message
     rhonn_estimation.name = name
@@ -102,7 +104,7 @@ def callback(data):
     joint_estimation.name = name
     joint_estimation.position = position
     joint_estimation.velocity = velocity
-    #joint_estimation.effort = neuron_2.getControlLaw()
+    joint_estimation.effort = neuron_2.u
     print ("End callback")
 
 def talker():
@@ -110,7 +112,7 @@ def talker():
     rospy.init_node('identifier', anonymous=True)
     pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=10)
     rospy.Subscriber('/robot_states', WholeBodyState, callback, queue_size=10)
-    rate = rospy.Rate(10) # 10hz
+    rate = rospy.Rate(1) # 10hz
 
     while not rospy.is_shutdown():
         # Clear the messages to avoid accumulation

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import numpy as np
+from controller import Controller
 
 def activation_function(state):
     return np.tanh(state)
@@ -10,9 +11,9 @@ class Rhonn:
         self.z_input = c_input
         self.w_weight = w_input
         self.neuron = number
-        self.W1_fixed = 100 #0.001
-        self.W2_fixed = 10 #0.1
-        self.u = 0.1
+        self.W1_fixed = 0.001 #0.001
+        self.W2_fixed = 0.1 #0.1
+        self.u = 0.0
         # self.ueq = None
         # self.v = None
         # self.fx_0 = None
@@ -102,12 +103,8 @@ class Rhonn:
     def get_weights(self):
         return self.w_weight
 
-    def control_law(self, rhonn_object, position):
-        # implementation...
-        pass
+    def get_control_law(self, controller_object):
+        self.u = controller_object.u
 
     def fx0_value(self, rhonn_object):
         self.fx_12 = rhonn_object.fx_12
-
-    def get_control_law(self):
-        return self.u

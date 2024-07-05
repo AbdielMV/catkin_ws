@@ -6,9 +6,10 @@ class Controller:
         self.neuron1 = neuron_1
         self.neuron2 = neuron_2
         self.error_x1 = 0.0
+        self.u = 0.0
     
     def control_law(self, position, velocity):
-        set_point = 45
+        set_point = 90
         error_x1_old = self.error_x1
         self.error_x0 = position - set_point
         self.error_x1 = velocity - 0
@@ -21,13 +22,13 @@ class Controller:
             sign_ex1 = -1
         else:
             sign_ex1 = 1
-        k1 = 0.65
-        k2 = 1e-8
+        k1 = 0.80
+        k2 = 1e-7
         v = -(k1*self.error_x0) - (k2*self.error_x1)
         ueq = v
         if np.abs(ueq) <= 15:
-            u = ueq
+            self.u = ueq
         else:
-            u = (15*(ueq/np.abs(ueq)))
-        return u
+            self.u = (15*(ueq/np.abs(ueq)))
+        return self.u
         

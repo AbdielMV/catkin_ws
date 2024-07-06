@@ -9,20 +9,20 @@ from efk import Efk
 from controller import Controller
 
 # Initialize RHONN values (inputs and weights)
-C1 = np.array([1, 1], dtype=float).reshape((2, 1))
-C2 = np.array([1, 1, 1], dtype=float).reshape((3, 1))
+C1 = np.array([1, 0], dtype=float).reshape((2, 1))
+C2 = np.array([1, 1, 0], dtype=float).reshape((3, 1))
 
 W1 = np.array([0, 0], dtype=float).reshape((2, 1))
 W2 = np.array([0, 0, 0], dtype=float).reshape((3, 1))
 
 # Initialize values of EFK training (P, Q, and R)
-R1 = 1e5 * np.identity(1, dtype=float)
-Q1 = 1e5 * np.identity(2, dtype=float)
-P1 = 1e10 * np.identity(2, dtype=float)
+R1 = 1e-5 * np.identity(1, dtype=float)
+Q1 = 1e-5 * np.identity(2, dtype=float)
+P1 = 1e-10 * np.identity(2, dtype=float)
 
-R2 = 1e3 * np.identity(1, dtype=float)
-Q2 = 1e3 * np.identity(3, dtype=float)
-P2 = 1e10 * np.identity(3, dtype=float)
+R2 = 1e-7 * np.identity(1, dtype=float)
+Q2 = 1e-6 * np.identity(3, dtype=float)
+P2 = 1e-10 * np.identity(3, dtype=float)
 
 # print ("C1: {}".format(C1))
 # print ("C2 {}".format(C2))
@@ -49,11 +49,16 @@ rhonn_estimation = RhonnState()
 position_1 = 0.0
 velocity_1 = 0.0
 position_y1 = 0.0
-velocity_y1 = 0.0 
+velocity_y1 = 0.0
 
-def callback(data):
-    global position_msg, joint_estimation, rhonn_estimation, position_1, velocity_1, position_y1, velocity_y1
-    print("Inside callback")
+# Initialize global variables
+position = 0.0
+velocity = 0.0
+name = ""
+
+def my_callback(data):
+    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
+    #print("Inside callback")
     name = data.joints[21].name
     position = (data.joints[21].position*180)/np.pi
     velocity = (data.joints[21].velocity*180)/np.pi
@@ -95,9 +100,9 @@ def callback(data):
     rhonn_estimation.error_w2 = error_2
     rhonn_estimation.obs_position = observer_1_value
     rhonn_estimation.obs_velocity = observer_2_value
+    rhonn_estimation.reference = controller_object.counter
 
     # Debug messages (optional)
-    print("Building message")
     # print("Valor X1_k+1 =", neuron_1_value)
     # print("Valor X2_k+1 =", neuron_2_value)
 
@@ -105,14 +110,14 @@ def callback(data):
     joint_estimation.position = position
     joint_estimation.velocity = velocity
     joint_estimation.effort = neuron_2.u
-    print ("End callback")
 
 def talker():
-    global position_msg, joint_estimation, rhonn_estimation
+    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity
     rospy.init_node('identifier', anonymous=True)
-    pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=10)
-    rospy.Subscriber('/robot_states', WholeBodyState, callback, queue_size=10)
-    rate = rospy.Rate(1) # 10hz
+    pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
+    rospy.Subscriber('/robot_states', WholeBodyState, my_callback, queue_size=1)
+    rate = rospy.Rate(1e2) # 10hz
+    rospy.Timer(rospy.Duration(1e-4), my_callback)
 
     while not rospy.is_shutdown():
         # Clear the messages to avoid accumulation
@@ -126,9 +131,7 @@ def talker():
         # Publish the message
         position_msg.header.stamp = rospy.Time.now()
         position_msg.time = rospy.get_time()
-        print("Before publishing")
         pub.publish(position_msg)
-        print("After publishing")
         rate.sleep()
 
 if __name__ == '__main__':

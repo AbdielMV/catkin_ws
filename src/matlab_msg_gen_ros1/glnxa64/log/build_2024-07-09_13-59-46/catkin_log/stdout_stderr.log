@@ -1,0 +1,715 @@
+ROS_DISTRO was set to 'kinetic' before. Please make sure that the environment does not mix paths from different distributions.
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+
+    project(ProjectName)
+
+  near the top of the file, but after cmake_minimum_required().
+
+  CMake is pretending there is a "project(Project)" command on the first
+  line.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- The C compiler identification is GNU 5.5.0
+-- The CXX compiler identification is GNU 5.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Deprecation Warning at CMakeLists.txt:4 (cmake_minimum_required):
+  Compatibility with CMake < 2.8.12 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- Using CATKIN_DEVEL_PREFIX: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel
+-- Using CMAKE_PREFIX_PATH: /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1;/home/abdiel/MATLAB/R2021b/toolbox/ros/mlroscpp/custom_messages
+-- This workspace overlays: /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1;/home/abdiel/MATLAB/R2021b/toolbox/ros/mlroscpp/custom_messages
+-- Found PythonInterp: /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 (found suitable version "2.7.12", minimum required is "2") 
+-- Using PYTHON_EXECUTABLE: /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2
+-- Using Debian Python package layout
+-- Using empy: /usr/bin/empy
+-- Using CATKIN_ENABLE_TESTING: off
+-- catkin 0.7.17
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 4 packages in topological order:
+-- ~~  - dynamic_introspection
+-- ~~  - tf_lookup
+-- ~~  - twist_mux_msgs
+-- ~~  - whole_body_state_msgs
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: 'dynamic_introspection'
+-- ==> add_subdirectory(dynamic_introspection)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- dynamic_introspection: 5 messages, 0 services
+-- +++ processing catkin package: 'tf_lookup'
+-- ==> add_subdirectory(tf_lookup)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- Generating .msg files for action tf_lookup/TfLookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/tf_lookup/action/TfLookup.action
+Generating for action TfLookup
+-- Generating .msg files for action tf_lookup/TfStream /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/tf_lookup/action/TfStream.action
+Generating for action TfStream
+-- tf_lookup: 15 messages, 1 services
+-- +++ processing catkin package: 'twist_mux_msgs'
+-- ==> add_subdirectory(twist_mux_msgs)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- Generating .msg files for action twist_mux_msgs/JoyPriority /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/twist_mux_msgs/action/JoyPriority.action
+Generating for action JoyPriority
+-- Generating .msg files for action twist_mux_msgs/JoyTurbo /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/twist_mux_msgs/action/JoyTurbo.action
+Generating for action JoyTurbo
+-- twist_mux_msgs: 14 messages, 0 services
+-- +++ processing catkin package: 'whole_body_state_msgs'
+-- ==> add_subdirectory(whole_body_state_msgs)
+-- Disabling the following message generators: geneus;genlisp;gennodejs
+-- Using these message generators: gencpp;genpy
+-- whole_body_state_msgs: 8 messages, 0 services
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    Boost_NAMESPACE
+
+
+-- Build files have been written to: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build
+[1/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfLookupActionResult.msg geometry_msgs/Transform:std_msgs/Header:geometry_msgs/Quaternion:actionlib_msgs/GoalID:tf_lookup/TfLookupResult:actionlib_msgs/GoalStatus:geometry_msgs/TransformStamped:geometry_msgs/Vector3
+[2/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/dynamic_introspection && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py dynamic_introspection /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/dynamic_introspection/msg/IntParameter.msg
+[3/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/dynamic_introspection && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py dynamic_introspection /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/dynamic_introspection/msg/BoolParameter.msg
+[4/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/dynamic_introspection && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py dynamic_introspection /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/dynamic_introspection/msg/IntrospectionMsg.msg dynamic_introspection/IntParameter:dynamic_introspection/MarkerParameter:dynamic_introspection/DoubleParameter:visualization_msgs/MarkerArray:std_msgs/Header:std_msgs/ColorRGBA:geometry_msgs/Point:visualization_msgs/Marker:geometry_msgs/Pose:geometry_msgs/Quaternion:dynamic_introspection/BoolParameter:geometry_msgs/Vector3
+[5/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/dynamic_introspection && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py dynamic_introspection /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/dynamic_introspection/msg/MarkerParameter.msg geometry_msgs/Pose:visualization_msgs/MarkerArray:std_msgs/Header:std_msgs/ColorRGBA:geometry_msgs/Quaternion:visualization_msgs/Marker:geometry_msgs/Point:geometry_msgs/Vector3
+[6/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfLookupAction.msg tf_lookup/TfLookupActionFeedback:geometry_msgs/Transform:tf_lookup/TfLookupFeedback:std_msgs/Header:tf_lookup/TfLookupResult:tf_lookup/TfLookupGoal:geometry_msgs/Quaternion:actionlib_msgs/GoalID:tf_lookup/TfLookupActionGoal:tf_lookup/TfLookupActionResult:actionlib_msgs/GoalStatus:geometry_msgs/TransformStamped:geometry_msgs/Vector3
+[7/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfStreamGoal.msg tf_lookup/Subscription
+[8/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/dynamic_introspection && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py dynamic_introspection /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/dynamic_introspection/msg/DoubleParameter.msg
+[9/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfStreamActionGoal.msg actionlib_msgs/GoalID:tf_lookup/Subscription:tf_lookup/TfStreamGoal:std_msgs/Header
+[10/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfLookupActionGoal.msg actionlib_msgs/GoalID:tf_lookup/TfLookupGoal:std_msgs/Header
+[11/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/tf_lookup/srv/lookupTransform.srv geometry_msgs/Transform:geometry_msgs/TransformStamped:geometry_msgs/Quaternion:geometry_msgs/Vector3:std_msgs/Header
+[12/174] Generating C++ code from dynamic_introspection/BoolParameter.msg
+[13/174] Generating C++ code from dynamic_introspection/IntParameter.msg
+[14/174] Generating C++ code from dynamic_introspection/DoubleParameter.msg
+[15/174] Generating C++ code from dynamic_introspection/IntrospectionMsg.msg
+[16/174] Generating C++ code from dynamic_introspection/MarkerParameter.msg
+[17/174] Generating Python from MSG dynamic_introspection/DoubleParameter
+[18/174] Generating Python from MSG dynamic_introspection/BoolParameter
+[19/174] Generating Python from MSG dynamic_introspection/IntrospectionMsg
+[20/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfLookupFeedback.msg
+[21/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfStreamAction.msg tf_lookup/TfStreamFeedback:std_msgs/Header:tf_lookup/TfStreamActionGoal:tf_lookup/TfStreamGoal:actionlib_msgs/GoalID:tf_lookup/TfStreamResult:tf_lookup/Subscription:actionlib_msgs/GoalStatus:tf_lookup/TfStreamActionFeedback:tf_lookup/TfStreamActionResult
+[22/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfLookupActionFeedback.msg actionlib_msgs/GoalID:actionlib_msgs/GoalStatus:tf_lookup/TfLookupFeedback:std_msgs/Header
+[23/174] Generating Python from MSG dynamic_introspection/IntParameter
+[24/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfStreamActionResult.msg actionlib_msgs/GoalID:tf_lookup/TfStreamResult:actionlib_msgs/GoalStatus:std_msgs/Header
+[25/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfStreamFeedback.msg
+[26/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfStreamResult.msg
+[27/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfLookupResult.msg geometry_msgs/Transform:geometry_msgs/TransformStamped:geometry_msgs/Quaternion:geometry_msgs/Vector3:std_msgs/Header
+[28/174] Generating Python from MSG dynamic_introspection/MarkerParameter
+[29/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfLookupGoal.msg
+[30/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/tf_lookup/msg/Subscription.msg
+[31/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/tf_lookup && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py tf_lookup /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/tf_lookup/msg/TfStreamActionFeedback.msg actionlib_msgs/GoalID:actionlib_msgs/GoalStatus:tf_lookup/TfStreamFeedback:std_msgs/Header
+[32/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyPriorityAction.msg twist_mux_msgs/JoyPriorityFeedback:std_msgs/Header:twist_mux_msgs/JoyPriorityGoal:twist_mux_msgs/JoyPriorityActionGoal:actionlib_msgs/GoalID:twist_mux_msgs/JoyPriorityResult:actionlib_msgs/GoalStatus:twist_mux_msgs/JoyPriorityActionResult:twist_mux_msgs/JoyPriorityActionFeedback
+[33/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyPriorityActionFeedback.msg actionlib_msgs/GoalID:twist_mux_msgs/JoyPriorityFeedback:actionlib_msgs/GoalStatus:std_msgs/Header
+[34/174] Generating Python msg __init__.py for dynamic_introspection
+[35/174] Generating C++ code from tf_lookup/TfLookupActionGoal.msg
+[36/174] Generating C++ code from tf_lookup/TfLookupActionFeedback.msg
+[37/174] Generating C++ code from tf_lookup/Subscription.msg
+[38/174] Building CXX object dynamic_introspection/CMakeFiles/dynamic_introspection_matlab.dir/src/dynamic_introspection_IntParameter_message.cpp.o
+[39/174] Building CXX object dynamic_introspection/CMakeFiles/dynamic_introspection_matlab.dir/src/dynamic_introspection_DoubleParameter_message.cpp.o
+[40/174] Building CXX object dynamic_introspection/CMakeFiles/dynamic_introspection_matlab.dir/src/dynamic_introspection_BoolParameter_message.cpp.o
+[41/174] Generating C++ code from tf_lookup/TfLookupActionResult.msg
+[42/174] Generating C++ code from tf_lookup/TfLookupAction.msg
+[43/174] Generating C++ code from tf_lookup/TfLookupGoal.msg
+[44/174] Generating C++ code from tf_lookup/TfStreamActionGoal.msg
+[45/174] Generating C++ code from tf_lookup/TfStreamActionFeedback.msg
+[46/174] Generating C++ code from tf_lookup/TfLookupFeedback.msg
+[47/174] Generating C++ code from tf_lookup/TfLookupResult.msg
+[48/174] Generating C++ code from tf_lookup/TfStreamAction.msg
+[49/174] Generating C++ code from tf_lookup/TfStreamActionResult.msg
+[50/174] Generating C++ code from tf_lookup/TfStreamFeedback.msg
+[51/174] Generating Python from MSG tf_lookup/TfStreamGoal
+[52/174] Generating C++ code from tf_lookup/TfStreamResult.msg
+[53/174] Generating C++ code from tf_lookup/TfStreamGoal.msg
+[54/174] Generating Python from MSG tf_lookup/TfStreamResult
+[55/174] Generating Python from MSG tf_lookup/Subscription
+[56/174] Generating Python from MSG tf_lookup/TfLookupActionGoal
+[57/174] Generating C++ code from tf_lookup/lookupTransform.srv
+[58/174] Generating Python from MSG tf_lookup/TfLookupAction
+[59/174] Generating Python from MSG tf_lookup/TfLookupActionFeedback
+[60/174] Generating Python from MSG tf_lookup/TfStreamActionFeedback
+[61/174] Generating Python from MSG tf_lookup/TfLookupGoal
+[62/174] Building CXX object dynamic_introspection/CMakeFiles/dynamic_introspection_matlab.dir/src/dynamic_introspection_IntrospectionMsg_message.cpp.o
+[63/174] Generating Python from MSG tf_lookup/TfLookupFeedback
+[64/174] Generating Python from MSG tf_lookup/TfLookupActionResult
+[65/174] Generating Python from MSG tf_lookup/TfStreamAction
+[66/174] Generating Python from MSG tf_lookup/TfLookupResult
+[67/174] Generating Python from MSG tf_lookup/TfStreamFeedback
+[68/174] Generating Python from MSG tf_lookup/TfStreamActionGoal
+[69/174] Generating Python from MSG tf_lookup/TfStreamActionResult
+[70/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyTurboActionGoal.msg actionlib_msgs/GoalID:twist_mux_msgs/JoyTurboGoal:std_msgs/Header
+[71/174] Generating Python code from SRV tf_lookup/lookupTransform
+[72/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyPriorityGoal.msg
+[73/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyTurboActionFeedback.msg actionlib_msgs/GoalID:actionlib_msgs/GoalStatus:twist_mux_msgs/JoyTurboFeedback:std_msgs/Header
+[74/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyPriorityActionGoal.msg actionlib_msgs/GoalID:twist_mux_msgs/JoyPriorityGoal:std_msgs/Header
+[75/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyTurboResult.msg
+[76/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyPriorityActionResult.msg actionlib_msgs/GoalID:actionlib_msgs/GoalStatus:twist_mux_msgs/JoyPriorityResult:std_msgs/Header
+[77/174] Generating Python msg __init__.py for tf_lookup
+[78/174] Generating Python srv __init__.py for tf_lookup
+[79/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyPriorityResult.msg
+[80/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyTurboActionResult.msg twist_mux_msgs/JoyTurboResult:actionlib_msgs/GoalID:actionlib_msgs/GoalStatus:std_msgs/Header
+[81/174] Building CXX object dynamic_introspection/CMakeFiles/dynamic_introspection_matlab.dir/src/dynamic_introspection_MarkerParameter_message.cpp.o
+[82/174] Linking CXX shared library /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/libdynamic_introspection_matlab.so
+[83/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_Subscription_message.cpp.o
+[84/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_lookupTransform_service.cpp.o
+[85/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfLookupAction_message.cpp.o
+[86/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfLookup_action.cpp.o
+[87/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfLookupActionGoal_message.cpp.o
+[88/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfLookupActionResult_message.cpp.o
+[89/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfLookupActionFeedback_message.cpp.o
+[90/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfStreamAction_message.cpp.o
+[91/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfStreamActionGoal_message.cpp.o
+[92/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyTurboGoal.msg
+[93/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyTurboFeedback.msg
+[94/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyTurboAction.msg twist_mux_msgs/JoyTurboGoal:std_msgs/Header:twist_mux_msgs/JoyTurboFeedback:twist_mux_msgs/JoyTurboActionFeedback:actionlib_msgs/GoalID:twist_mux_msgs/JoyTurboActionGoal:actionlib_msgs/GoalStatus:twist_mux_msgs/JoyTurboActionResult:twist_mux_msgs/JoyTurboResult
+[95/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/twist_mux_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py twist_mux_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/share/twist_mux_msgs/msg/JoyPriorityFeedback.msg
+[96/174] Generating Python from MSG twist_mux_msgs/JoyPriorityActionFeedback
+[97/174] Generating C++ code from twist_mux_msgs/JoyTurboGoal.msg
+[98/174] Generating C++ code from twist_mux_msgs/JoyPriorityActionFeedback.msg
+[99/174] Generating Python from MSG twist_mux_msgs/JoyTurboActionFeedback
+[100/174] Generating Python from MSG twist_mux_msgs/JoyPriorityAction
+[101/174] Generating Python from MSG twist_mux_msgs/JoyPriorityActionGoal
+[102/174] Generating Python from MSG twist_mux_msgs/JoyPriorityActionResult
+[103/174] Generating Python from MSG twist_mux_msgs/JoyPriorityResult
+[104/174] Generating Python from MSG twist_mux_msgs/JoyTurboAction
+[105/174] Generating Python from MSG twist_mux_msgs/JoyTurboActionGoal
+[106/174] Generating Python from MSG twist_mux_msgs/JoyPriorityFeedback
+[107/174] Generating Python from MSG twist_mux_msgs/JoyPriorityGoal
+[108/174] Generating Python from MSG twist_mux_msgs/JoyTurboResult
+[109/174] Generating Python from MSG twist_mux_msgs/JoyTurboGoal
+[110/174] Generating Python from MSG twist_mux_msgs/JoyTurboFeedback
+[111/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfStream_action.cpp.o
+[112/174] Generating Python from MSG twist_mux_msgs/JoyTurboActionResult
+[113/174] Generating C++ code from twist_mux_msgs/JoyPriorityAction.msg
+[114/174] Generating Python msg __init__.py for twist_mux_msgs
+[115/174] Generating C++ code from twist_mux_msgs/JoyPriorityActionGoal.msg
+[116/174] Generating C++ code from twist_mux_msgs/JoyTurboActionGoal.msg
+[117/174] Generating C++ code from twist_mux_msgs/JoyTurboAction.msg
+[118/174] Generating C++ code from twist_mux_msgs/JoyPriorityActionResult.msg
+[119/174] Generating C++ code from twist_mux_msgs/JoyPriorityFeedback.msg
+[120/174] Generating C++ code from twist_mux_msgs/JoyPriorityGoal.msg
+[121/174] Generating C++ code from twist_mux_msgs/JoyPriorityResult.msg
+[122/174] Generating C++ code from twist_mux_msgs/JoyTurboActionFeedback.msg
+[123/174] Generating C++ code from twist_mux_msgs/JoyTurboActionResult.msg
+[124/174] Generating C++ code from twist_mux_msgs/JoyTurboFeedback.msg
+[125/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/whole_body_state_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py whole_body_state_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/whole_body_state_msgs/msg/WholeBodyState.msg geometry_msgs/Pose:std_msgs/Header:geometry_msgs/Wrench:whole_body_state_msgs/CentroidalState:geometry_msgs/Quaternion:whole_body_state_msgs/ContactState:whole_body_state_msgs/RhonnState:geometry_msgs/Point:geometry_msgs/Twist:whole_body_state_msgs/JointState:geometry_msgs/Vector3
+[126/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/whole_body_state_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py whole_body_state_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/whole_body_state_msgs/msg/JointState.msg
+[127/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/whole_body_state_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py whole_body_state_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/whole_body_state_msgs/msg/WholeBodyTrajectory.msg geometry_msgs/Pose:std_msgs/Header:geometry_msgs/Wrench:whole_body_state_msgs/CentroidalState:geometry_msgs/Quaternion:whole_body_state_msgs/WholeBodyState:whole_body_state_msgs/ContactState:whole_body_state_msgs/RhonnState:geometry_msgs/Point:geometry_msgs/Twist:whole_body_state_msgs/JointState:geometry_msgs/Vector3
+[128/174] Generating C++ code from twist_mux_msgs/JoyTurboResult.msg
+[129/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/whole_body_state_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py whole_body_state_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/whole_body_state_msgs/msg/JointCommand.msg
+[130/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfStreamActionResult_message.cpp.o
+[131/174] Building CXX object tf_lookup/CMakeFiles/tf_lookup_matlab.dir/src/tf_lookup_TfStreamActionFeedback_message.cpp.o
+[132/174] Linking CXX shared library /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/libtf_lookup_matlab.so
+[133/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyPriorityAction_message.cpp.o
+[134/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyPriorityActionGoal_message.cpp.o
+[135/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyPriorityActionResult_message.cpp.o
+[136/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyPriority_action.cpp.o
+[137/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyPriorityActionFeedback_message.cpp.o
+[138/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyTurboAction_message.cpp.o
+[139/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyTurbo_action.cpp.o
+[140/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/whole_body_state_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py whole_body_state_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/whole_body_state_msgs/msg/WholeBodyController.msg geometry_msgs/Pose:std_msgs/Header:geometry_msgs/Wrench:whole_body_state_msgs/CentroidalState:geometry_msgs/Quaternion:whole_body_state_msgs/WholeBodyState:whole_body_state_msgs/ContactState:whole_body_state_msgs/RhonnState:whole_body_state_msgs/JointCommand:geometry_msgs/Point:geometry_msgs/Twist:whole_body_state_msgs/JointState:geometry_msgs/Vector3
+[141/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/whole_body_state_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py whole_body_state_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/whole_body_state_msgs/msg/RhonnState.msg
+[142/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyTurboActionGoal_message.cpp.o
+[143/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/whole_body_state_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py whole_body_state_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/whole_body_state_msgs/msg/CentroidalState.msg geometry_msgs/Quaternion:geometry_msgs/Twist:geometry_msgs/Vector3
+[144/174] cd /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/whole_body_state_msgs && /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build/catkin_generated/env_cached.sh /home/abdiel/.matlab/R2021b/ros1/glnxa64/venv/bin/python2 /home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py whole_body_state_msgs /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/whole_body_state_msgs/msg/ContactState.msg geometry_msgs/Pose:geometry_msgs/Wrench:geometry_msgs/Quaternion:geometry_msgs/Point:geometry_msgs/Twist:geometry_msgs/Vector3
+[145/174] Generating C++ code from whole_body_state_msgs/WholeBodyTrajectory.msg
+[146/174] Generating C++ code from whole_body_state_msgs/CentroidalState.msg
+[147/174] Generating Python from MSG whole_body_state_msgs/CentroidalState
+[148/174] Generating C++ code from whole_body_state_msgs/ContactState.msg
+[149/174] Generating C++ code from whole_body_state_msgs/JointCommand.msg
+[150/174] Generating C++ code from whole_body_state_msgs/JointState.msg
+[151/174] Generating C++ code from whole_body_state_msgs/RhonnState.msg
+[152/174] Generating C++ code from whole_body_state_msgs/WholeBodyController.msg
+[153/174] Generating C++ code from whole_body_state_msgs/WholeBodyState.msg
+[154/174] Generating Python from MSG whole_body_state_msgs/WholeBodyController
+[155/174] Generating Python from MSG whole_body_state_msgs/ContactState
+[156/174] Generating Python from MSG whole_body_state_msgs/JointState
+[157/174] Generating Python from MSG whole_body_state_msgs/JointCommand
+[158/174] Generating Python from MSG whole_body_state_msgs/RhonnState
+[159/174] Generating Python from MSG whole_body_state_msgs/WholeBodyState
+[160/174] Generating Python from MSG whole_body_state_msgs/WholeBodyTrajectory
+[161/174] Generating Python msg __init__.py for whole_body_state_msgs
+[162/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyTurboActionResult_message.cpp.o
+[163/174] Building CXX object twist_mux_msgs/CMakeFiles/twist_mux_msgs_matlab.dir/src/twist_mux_msgs_JoyTurboActionFeedback_message.cpp.o
+[164/174] Linking CXX shared library /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/libtwist_mux_msgs_matlab.so
+[165/174] Building CXX object whole_body_state_msgs/CMakeFiles/whole_body_state_msgs_matlab.dir/src/whole_body_state_msgs_JointCommand_message.cpp.o
+[166/174] Building CXX object whole_body_state_msgs/CMakeFiles/whole_body_state_msgs_matlab.dir/src/whole_body_state_msgs_CentroidalState_message.cpp.o
+[167/174] Building CXX object whole_body_state_msgs/CMakeFiles/whole_body_state_msgs_matlab.dir/src/whole_body_state_msgs_ContactState_message.cpp.o
+[168/174] Building CXX object whole_body_state_msgs/CMakeFiles/whole_body_state_msgs_matlab.dir/src/whole_body_state_msgs_JointState_message.cpp.o
+[169/174] Building CXX object whole_body_state_msgs/CMakeFiles/whole_body_state_msgs_matlab.dir/src/whole_body_state_msgs_RhonnState_message.cpp.o
+[170/174] Building CXX object whole_body_state_msgs/CMakeFiles/whole_body_state_msgs_matlab.dir/src/whole_body_state_msgs_WholeBodyController_message.cpp.o
+[171/174] Building CXX object whole_body_state_msgs/CMakeFiles/whole_body_state_msgs_matlab.dir/src/whole_body_state_msgs_WholeBodyState_message.cpp.o
+[172/174] Building CXX object whole_body_state_msgs/CMakeFiles/whole_body_state_msgs_matlab.dir/src/whole_body_state_msgs_WholeBodyTrajectory_message.cpp.o
+[173/174] Linking CXX shared library /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/libwhole_body_state_msgs_matlab.so
+[173/174] Install the project...
+-- Install configuration: "Release"
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/_setup_util.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/env.sh
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/setup.bash
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/local_setup.bash
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/setup.sh
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/local_setup.sh
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/setup.zsh
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/local_setup.zsh
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/.rosinstall
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/msg/BoolParameter.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/msg/DoubleParameter.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/msg/IntParameter.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/msg/IntrospectionMsg.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/msg/MarkerParameter.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/cmake/dynamic_introspection-msg-paths.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/dynamic_introspection
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/dynamic_introspection/BoolParameter.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/dynamic_introspection/MarkerParameter.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/dynamic_introspection/IntrospectionMsg.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/dynamic_introspection/IntParameter.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/dynamic_introspection/DoubleParameter.h
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection/__init__.py ...
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection/msg ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection/msg/_BoolParameter.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection/msg/_DoubleParameter.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection/msg/_IntParameter.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection/msg/_IntrospectionMsg.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection/msg/_MarkerParameter.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/dynamic_introspection/msg/__init__.py ...
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_DoubleParameter.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_MarkerParameter.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_IntParameter.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_MarkerParameter.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_IntrospectionMsg.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_IntrospectionMsg.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_DoubleParameter.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_BoolParameter.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_BoolParameter.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/msg/_IntParameter.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/dynamic_introspection/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/dynamic_introspection.pc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/cmake/dynamic_introspection-msg-extras.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/cmake/dynamic_introspectionConfig.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/cmake/dynamic_introspectionConfig-version.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/dynamic_introspection/package.xml
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/dynamic_introspection
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/dynamic_introspection/visibility_control.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/libdynamic_introspection_matlab.so
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+dynamic_introspection
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+dynamic_introspection/markerParameter.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+dynamic_introspection/boolParameter.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+dynamic_introspection/doubleParameter.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+dynamic_introspection/intParameter.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+dynamic_introspection/introspectionMsg.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+dynamic_introspection
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+dynamic_introspection/BoolParameter.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+dynamic_introspection/MarkerParameter.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+dynamic_introspection/IntParameter.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+dynamic_introspection/DoubleParameter.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+dynamic_introspection/IntrospectionMsg.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/Subscription.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/srv/lookupTransform.srv
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/action/TfLookup.action
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/action/TfStream.action
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfLookupAction.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfLookupActionGoal.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfLookupActionResult.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfLookupActionFeedback.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfLookupGoal.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfLookupResult.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfLookupFeedback.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfStreamAction.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfStreamActionGoal.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfStreamActionResult.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfStreamActionFeedback.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfStreamGoal.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfStreamResult.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/msg/TfStreamFeedback.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/cmake/tf_lookup-msg-paths.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfStreamActionGoal.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfStreamFeedback.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfStreamActionFeedback.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfLookupFeedback.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfStreamAction.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfLookupGoal.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/lookupTransform.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfStreamActionResult.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfLookupActionGoal.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfLookupResult.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfStreamResult.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfStreamGoal.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfLookupActionFeedback.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfLookupAction.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/lookupTransformResponse.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/lookupTransformRequest.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/Subscription.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/TfLookupActionResult.h
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/__init__.py ...
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_Subscription.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupAction.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionFeedback.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionGoal.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionResult.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupFeedback.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupGoal.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupResult.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamAction.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionFeedback.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionGoal.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionResult.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamFeedback.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamGoal.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamResult.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/msg/__init__.py ...
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/srv ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/srv/__init__.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/tf_lookup/srv/_lookupTransform.py ...
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionFeedback.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionResult.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionGoal.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupResult.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamFeedback.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupGoal.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionFeedback.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamGoal.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_Subscription.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamResult.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamFeedback.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupAction.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupResult.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupAction.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_Subscription.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionFeedback.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionGoal.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamActionResult.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionGoal.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamAction.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamResult.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionGoal.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamAction.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupGoal.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfStreamGoal.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionResult.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupFeedback.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupFeedback.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionFeedback.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/msg/_TfLookupActionResult.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/srv
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/srv/_lookupTransform.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/srv/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/srv/_lookupTransform.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/srv/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/tf_lookup/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/tf_lookup.pc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/cmake/tf_lookup-msg-extras.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/cmake/tf_lookupConfig.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/cmake/tf_lookupConfig-version.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/tf_lookup/package.xml
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/tf_lookup/visibility_control.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/libtf_lookup_matlab.so
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfStreamActionResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/lookupTransformRequest.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfLookupActionFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/lookupTransformResponse.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfStreamFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfLookupAction.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfStreamActionGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfLookupActionResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/subscription.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfStreamGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfLookupGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfStreamAction.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfLookupFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfStreamResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfLookupResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfLookupActionGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+tf_lookup/tfStreamActionFeedback.m
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/lookupTransformRequest.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/lookupTransformResponse.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfLookupActionResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfStreamActionGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfStreamFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfStreamResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfStreamActionResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfLookupActionGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfStreamGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfLookupActionFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfLookupGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfStreamActionFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfLookupResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/Subscription.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfLookupFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfStreamAction.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+tf_lookup/TfLookupAction.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/action/JoyPriority.action
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/action/JoyTurbo.action
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyPriorityAction.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyPriorityActionGoal.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyPriorityActionResult.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyPriorityActionFeedback.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyPriorityGoal.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyPriorityResult.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyPriorityFeedback.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyTurboAction.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyTurboActionGoal.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyTurboActionResult.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyTurboActionFeedback.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyTurboGoal.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyTurboResult.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/msg/JoyTurboFeedback.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/cmake/twist_mux_msgs-msg-paths.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyTurboResult.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyPriorityActionResult.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyPriorityAction.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyPriorityActionFeedback.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyPriorityGoal.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyTurboGoal.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyTurboFeedback.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyPriorityActionGoal.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyTurboAction.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyTurboActionResult.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyPriorityFeedback.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyTurboActionFeedback.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyPriorityResult.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/JoyTurboActionGoal.h
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/__init__.py ...
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityAction.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionFeedback.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionGoal.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionResult.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityFeedback.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityGoal.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityResult.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboAction.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionFeedback.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionGoal.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionResult.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboFeedback.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboGoal.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboResult.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/twist_mux_msgs/msg/__init__.py ...
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboFeedback.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionFeedback.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionFeedback.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboGoal.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboAction.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityResult.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityGoal.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionResult.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionResult.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityAction.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboResult.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionGoal.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityFeedback.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionFeedback.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionGoal.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityGoal.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionResult.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboAction.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityFeedback.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboResult.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionFeedback.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboFeedback.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboGoal.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityAction.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionGoal.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityActionResult.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyTurboActionGoal.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/msg/_JoyPriorityResult.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/twist_mux_msgs/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/twist_mux_msgs.pc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/cmake/twist_mux_msgs-msg-extras.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/cmake/twist_mux_msgsConfig.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/cmake/twist_mux_msgsConfig-version.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/twist_mux_msgs/package.xml
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/twist_mux_msgs/visibility_control.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/libtwist_mux_msgs_matlab.so
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyTurboActionFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyPriorityFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyPriorityActionGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyTurboActionGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyPriorityResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyPriorityGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyPriorityAction.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyPriorityActionFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyTurboActionResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyPriorityActionResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyTurboAction.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyTurboResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyTurboFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+twist_mux_msgs/joyTurboGoal.m
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyTurboActionResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyTurboGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyPriorityActionResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyTurboActionFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyPriorityAction.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyPriorityActionGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyTurboAction.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyPriorityResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyPriorityActionFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyPriorityFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyTurboFeedback.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyTurboResult.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyPriorityGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+twist_mux_msgs/JoyTurboActionGoal.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/msg/CentroidalState.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/msg/ContactState.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/msg/JointCommand.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/msg/JointState.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/msg/RhonnState.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/msg/WholeBodyController.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/msg/WholeBodyState.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/msg/WholeBodyTrajectory.msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/cmake/whole_body_state_msgs-msg-paths.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/JointState.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/WholeBodyController.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/WholeBodyState.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/WholeBodyTrajectory.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/JointCommand.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/RhonnState.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/CentroidalState.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/ContactState.h
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/__init__.py ...
+Listing /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_CentroidalState.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_ContactState.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_JointCommand.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_JointState.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_RhonnState.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyController.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyState.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyTrajectory.py ...
+Compiling /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel/lib/python2.7/dist-packages/whole_body_state_msgs/msg/__init__.py ...
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_RhonnState.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyController.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_JointCommand.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyState.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_JointCommand.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyTrajectory.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_ContactState.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyState.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_CentroidalState.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_CentroidalState.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyController.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_WholeBodyTrajectory.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_RhonnState.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_ContactState.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_JointState.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/msg/_JointState.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/__init__.pyc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/python2.7/dist-packages/whole_body_state_msgs/__init__.py
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/pkgconfig/whole_body_state_msgs.pc
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/cmake/whole_body_state_msgs-msg-extras.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/cmake/whole_body_state_msgsConfig.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/cmake/whole_body_state_msgsConfig-version.cmake
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/share/whole_body_state_msgs/package.xml
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/include/whole_body_state_msgs/visibility_control.h
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/lib/libwhole_body_state_msgs_matlab.so
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m/
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs/wholeBodyState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs/contactState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs/jointCommand.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs/wholeBodyController.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs/rhonnState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs/centroidalState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs/jointState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+internal/+ros/+custommessages/+whole_body_state_msgs/wholeBodyTrajectory.m
+-- Up-to-date: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs/WholeBodyState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs/JointCommand.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs/JointState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs/WholeBodyController.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs/ContactState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs/RhonnState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs/CentroidalState.m
+-- Installing: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install/m//+ros/+msggen/+whole_body_state_msgs/WholeBodyTrajectory.m
+Base path: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64
+Source space: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src
+Build space: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build
+Devel space: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel
+Install space: /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install
+Creating symlink "/home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src/CMakeLists.txt" pointing to "/home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1/share/catkin/cmake/toplevel.cmake"
+####
+#### Running command: "cmake /home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/src -DBoost_NAMESPACE=mwboost -DCATKIN_ENABLE_TESTING=off -DCMAKE_PREFIX_PATH=/home/abdiel/MATLAB/R2021b/sys/ros1/glnxa64/ros1;/home/abdiel/MATLAB/R2021b/toolbox/ros/mlroscpp/custom_messages -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE=-O0 -DCATKIN_DEVEL_PREFIX=/home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/devel -DCMAKE_INSTALL_PREFIX=/home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/install -G Ninja" in "/home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build"
+####
+####
+#### Running command: "ninja install install -j4 -l4" in "/home/abdiel/catkin_ws/src/matlab_msg_gen_ros1/glnxa64/build"
+####

@@ -117,7 +117,7 @@ def talker():
     pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
     rospy.Subscriber('/robot_states', WholeBodyState, my_callback, queue_size=1)
     rate = rospy.Rate(1e2) # 10hz
-    rospy.Timer(rospy.Duration(1e-4), my_callback)
+    rospy.Timer(rospy.Duration(1e-3), my_callback)
 
     while not rospy.is_shutdown():
         # Clear the messages to avoid accumulation

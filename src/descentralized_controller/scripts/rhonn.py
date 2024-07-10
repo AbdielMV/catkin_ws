@@ -11,8 +11,8 @@ class Rhonn:
         self.z_input = c_input
         self.w_weight = w_input
         self.neuron = number
-        self.W1_fixed = 100 #0.001
-        self.W2_fixed = 10 #0.1
+        self.W1_fixed = 0.001 #0.001
+        self.W2_fixed = 1 #0.1
         self.u = 0.0
         # self.ueq = None
         # self.v = None

@@ -2,6 +2,9 @@
 
 import rospy
 import numpy as np
+import time
+import csv
+import matplotlib.pyplot as plt
 from std_msgs.msg import String
 from whole_body_state_msgs.msg import JointState, WholeBodyTrajectory, WholeBodyState, RhonnState
 from rhonn import Rhonn
@@ -16,18 +19,14 @@ W1 = np.array([0, 0], dtype=float).reshape((2, 1))
 W2 = np.array([0, 0, 0], dtype=float).reshape((3, 1))
 
 # Initialize values of EFK training (P, Q, and R)
-R1 = 1e-5 * np.identity(1, dtype=float)
-Q1 = 1e-5 * np.identity(2, dtype=float)
-P1 = 1e-10 * np.identity(2, dtype=float)
+R1 = 1e5 * np.identity(1, dtype=float)
+Q1 = 1e5 * np.identity(2, dtype=float)
+P1 = 1e10 * np.identity(2, dtype=float)
 
-R2 = 1e-7 * np.identity(1, dtype=float)
-Q2 = 1e-6 * np.identity(3, dtype=float)
-P2 = 1e-10 * np.identity(3, dtype=float)
+R2 = 1e7 * np.identity(1, dtype=float)
+Q2 = 1e6 * np.identity(3, dtype=float)
+P2 = 1e10 * np.identity(3, dtype=float)
 
-# print ("C1: {}".format(C1))
-# print ("C2 {}".format(C2))
-# print ("W1: {}".format(W1))
-# print ("W2: {}".format(W2))
 
 # Create object Rhonn
 neuron_1 = Rhonn(C1, W1, 1)
@@ -56,12 +55,20 @@ position = 0.0
 velocity = 0.0
 name = ""
 
-def my_callback(data):
+def sensor_callback(data):
     global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
-    #print("Inside callback")
+    #name = data.joints[21].name
+    #position = (data.joints[21].position*180)/np.pi
+    #velocity = (data.joints[21].velocity*180)/np.pi
     name = data.joints[21].name
-    position = (data.joints[21].position*180)/np.pi
-    velocity = (data.joints[21].velocity*180)/np.pi
+    position = data.joints[21].position
+    velocity = data.joints[21].velocity
+    # Convert from radian to degrees
+    position = (position*180)/np.pi
+    velocity = (velocity*180)/np.pi
+
+def processing_data(event):
+    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
 
     # Filter first degree
     position_y = position_y1*0.99+position_1*0.00995
@@ -74,9 +81,6 @@ def my_callback(data):
     # Change of variable for use those names
     position = position_y
     velocity = velocity_y
-    # print ("name: {}".format(name))
-    # print ("position {}".format(position))
-    # print ("velocity: {}".format(velocity))
 
     #print("Neurona 1")
     observer_1_value = neuron_1.observer_state(position, velocity)
@@ -111,31 +115,63 @@ def my_callback(data):
     joint_estimation.velocity = velocity
     joint_estimation.effort = neuron_2.u
 
+def save_to_csv(data):
+        with open('vector_data.csv', 'wb') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['Time', 'position', 'velocity'])  # Assuming 3D vectors
+            writer.writerows(data)
+        rospy.loginfo('Data saved to vector_data.csv')
+
+def ending_node():
+    rospy.loginfo('Ending Program, home position and effort cero')
+    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity
+    pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
+    rate = rospy.Rate(1e2) # 10hz
+    joint_estimation.name = name
+    joint_estimation.position = position
+    joint_estimation.velocity = velocity
+    joint_estimation.effort = 0
+    position_msg.joints.append(joint_estimation)
+    pub.publish(position_msg)
+
 def talker():
     global position_msg, joint_estimation, rhonn_estimation, name, position, velocity
     rospy.init_node('identifier', anonymous=True)
     pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
-    rospy.Subscriber('/robot_states', WholeBodyState, my_callback, queue_size=1)
     rate = rospy.Rate(1e2) # 10hz
-    rospy.Timer(rospy.Duration(1e-3), my_callback)
+    rospy.Subscriber('/robot_states', WholeBodyState, sensor_callback, queue_size=1)
+    rospy.Timer(rospy.Duration(1e-2), processing_data)
+    time_init = 0
+    time_end = 30
+    left_time = time_end - time_init
+    data = []
 
-    while not rospy.is_shutdown():
+
+    while not rospy.is_shutdown() and left_time > 0:
         # Clear the messages to avoid accumulation
         position_msg.joints = []
         position_msg.rhonn = []
 
-        #Has to be JointState (joints) NOT Rhonn (rhonn)
+        # Has to be JointState (joints) NOT Rhonn (rhonn)
         position_msg.joints.append(joint_estimation)
         position_msg.rhonn.append(rhonn_estimation)
+
+        # Append position and velocity to data list
+        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity])
 
         # Publish the message
         position_msg.header.stamp = rospy.Time.now()
         position_msg.time = rospy.get_time()
         pub.publish(position_msg)
         rate.sleep()
+        time_init = time_init + 0.1
+        left_time = time_end - time_init
+    save_to_csv(data)
+    ending_node()
 
 if __name__ == '__main__':
     try:
         talker()
     except rospy.ROSInterruptException:
+        #ending_node()
         pass

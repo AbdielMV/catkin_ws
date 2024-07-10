@@ -132,7 +132,7 @@ def talker():
    while not rospy.is_shutdown():
       t =  rospy.Time.now().secs
       hello_str = "hello world %s" % rospy.get_time()
-      rospy.loginfo(hello_str)
+      #rospy.loginfo(hello_str)
       pub.publish(hello_str)
       wbs.publish(t, q, v, tau, p, pd, f, s)
       rate.sleep()

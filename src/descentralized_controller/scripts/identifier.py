@@ -57,20 +57,19 @@ name = ""
 
 def sensor_callback(data):
     global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
+
     #name = data.joints[21].name
     #position = (data.joints[21].position*180)/np.pi
     #velocity = (data.joints[21].velocity*180)/np.pi
     name = data.joints[21].name
     position = data.joints[21].position
     velocity = data.joints[21].velocity
+
     # Convert from radian to degrees
     position = (position*180)/np.pi
     velocity = (velocity*180)/np.pi
 
-def processing_data(event):
-    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
-
-    # Filter first degree
+    # # Filter first degree
     position_y = position_y1*0.99+position_1*0.00995
     velocity_y = velocity_y1*0.99+velocity_1*0.00995
     position_1 = position
@@ -82,6 +81,8 @@ def processing_data(event):
     position = position_y
     velocity = velocity_y
 
+def processing_data(event):
+    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
     #print("Neurona 1")
     observer_1_value = neuron_1.observer_state(position, velocity)
     neuron_1_value = neuron_1.prediction_state(position,velocity)
@@ -118,7 +119,7 @@ def processing_data(event):
 def save_to_csv(data):
         with open('vector_data.csv', 'wb') as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow(['Time', 'position', 'velocity'])  # Assuming 3D vectors
+            writer.writerow(['Time', 'position', 'velocity', 'rhonn_x0', 'rhonn_x1'])  # Assuming 3D vectors
             writer.writerows(data)
         rospy.loginfo('Data saved to vector_data.csv')
 
@@ -130,7 +131,7 @@ def ending_node():
     joint_estimation.name = name
     joint_estimation.position = position
     joint_estimation.velocity = velocity
-    joint_estimation.effort = 0
+    joint_estimation.effort = 0.20
     position_msg.joints.append(joint_estimation)
     pub.publish(position_msg)
 
@@ -140,14 +141,21 @@ def talker():
     pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
     rate = rospy.Rate(1e2) # 10hz
     rospy.Subscriber('/robot_states', WholeBodyState, sensor_callback, queue_size=1)
-    rospy.Timer(rospy.Duration(1e-2), processing_data)
+    rospy.Timer(rospy.Duration(0.1), processing_data)
     time_init = 0
-    time_end = 30
+    time_end = 26
     left_time = time_end - time_init
     data = []
+    final_time = 1
+    flag1 = False
 
-
-    while not rospy.is_shutdown() and left_time > 0:
+    while not rospy.is_shutdown():   #and left_time > 0
+        time_now = rospy.get_time()
+        if time_now != 0 and flag1 is False:
+            final_time = time_now + time_end
+            flag1 = True
+        elif time_now > final_time:
+            break
         # Clear the messages to avoid accumulation
         position_msg.joints = []
         position_msg.rhonn = []
@@ -157,15 +165,14 @@ def talker():
         position_msg.rhonn.append(rhonn_estimation)
 
         # Append position and velocity to data list
-        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity])
+        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity, rhonn_estimation.position, rhonn_estimation.velocity])
 
         # Publish the message
         position_msg.header.stamp = rospy.Time.now()
         position_msg.time = rospy.get_time()
         pub.publish(position_msg)
         rate.sleep()
-        time_init = time_init + 0.1
-        left_time = time_end - time_init
+
     save_to_csv(data)
     ending_node()
 

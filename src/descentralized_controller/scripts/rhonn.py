@@ -12,7 +12,7 @@ class Rhonn:
         self.w_weight = w_input
         self.neuron = number
         self.W1_fixed = 0.001 #0.001
-        self.W2_fixed = 1 #0.1
+        self.W2_fixed = 0.1 #0.1
         self.u = 0.0
         # self.ueq = None
         # self.v = None
@@ -71,7 +71,7 @@ class Rhonn:
             # fx_12 = w_transposed[0,1]*self.z_input[1,0]
             fixed_result = self.W1_fixed*velocity
             # state_final_prediction = fx_11+fx_12+fixed_result
-            state_final_prediction = (w_transposed[0,0]*np.tanh(position)) + w_transposed[0,1] + fixed_result
+            state_final_prediction = (w_transposed[0,0]*activation_function(position)) + w_transposed[0,1] + fixed_result
             fx_0 = state_final_prediction
             return fx_0
         else:
@@ -80,7 +80,7 @@ class Rhonn:
             # fx_23 = w_transposed[0,2]*self.z_input[2,0]
             fixed_result = self.W2_fixed*self.u
             #state_final_prediction = fx_21+fx_22+fx_23+fixed_result
-            state_final_prediction = (w_transposed[0,0]*np.tanh(position)) + (w_transposed[0,1]*np.tanh(velocity)) + w_transposed[0,2] + fixed_result
+            state_final_prediction = (w_transposed[0,0]*activation_function(position)) + (w_transposed[0,1]*activation_function(velocity)) + w_transposed[0,2] + fixed_result
             fx_1 = state_final_prediction
             return fx_1
     

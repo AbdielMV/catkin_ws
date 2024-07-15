@@ -12,20 +12,20 @@ from efk import Efk
 from controller import Controller
 
 # Initialize RHONN values (inputs and weights)
-C1 = np.array([1, 0], dtype=float).reshape((2, 1))
-C2 = np.array([1, 1, 0], dtype=float).reshape((3, 1))
+C1 = np.array([1, 1], dtype=float).reshape((2, 1))
+C2 = np.array([1, 1], dtype=float).reshape((2, 1))
 
 W1 = np.array([0, 0], dtype=float).reshape((2, 1))
-W2 = np.array([0, 0, 0], dtype=float).reshape((3, 1))
+W2 = np.array([0, 0], dtype=float).reshape((2, 1))
 
 # Initialize values of EFK training (P, Q, and R)
 R1 = 1e5 * np.identity(1, dtype=float)
 Q1 = 1e5 * np.identity(2, dtype=float)
 P1 = 1e10 * np.identity(2, dtype=float)
 
-R2 = 1e7 * np.identity(1, dtype=float)
-Q2 = 1e6 * np.identity(3, dtype=float)
-P2 = 1e10 * np.identity(3, dtype=float)
+R2 = 1e6 * np.identity(1, dtype=float)
+Q2 = 1e8 * np.identity(2, dtype=float)
+P2 = 1e15 * np.identity(2, dtype=float)
 
 
 # Create object Rhonn
@@ -94,7 +94,6 @@ def processing_data(event):
     neuron_2_value = neuron_2.prediction_state(position,velocity)
     error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity,2)
     efk_object_2.calculate_new_weights(neuron_2)
-    controller_object.control_law(position,velocity)
     neuron_2.get_control_law(controller_object)
 
     # Construction of Message
@@ -119,19 +118,19 @@ def processing_data(event):
 def save_to_csv(data):
         with open('vector_data.csv', 'wb') as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow(['Time', 'position', 'velocity', 'rhonn_x0', 'rhonn_x1'])  # Assuming 3D vectors
+            writer.writerow(['Time', 'position', 'velocity', 'rhonn_x0', 'rhonn_x1', 'error_x0', 'error_x1', 'set_point'])  # Assuming 3D vectors
             writer.writerows(data)
         rospy.loginfo('Data saved to vector_data.csv')
 
-def ending_node():
+def ending_node(pub):
     rospy.loginfo('Ending Program, home position and effort cero')
     global position_msg, joint_estimation, rhonn_estimation, name, position, velocity
-    pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
-    rate = rospy.Rate(1e2) # 10hz
+    # pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
+    # rate = rospy.Rate(1e2) # 10hz
     joint_estimation.name = name
     joint_estimation.position = position
     joint_estimation.velocity = velocity
-    joint_estimation.effort = 0.20
+    joint_estimation.effort = 0.5
     position_msg.joints.append(joint_estimation)
     pub.publish(position_msg)
 
@@ -141,9 +140,9 @@ def talker():
     pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
     rate = rospy.Rate(1e2) # 10hz
     rospy.Subscriber('/robot_states', WholeBodyState, sensor_callback, queue_size=1)
-    rospy.Timer(rospy.Duration(0.1), processing_data)
+    rospy.Timer(rospy.Duration(1e-6), processing_data)
     time_init = 0
-    time_end = 26
+    time_end = 30
     left_time = time_end - time_init
     data = []
     final_time = 1
@@ -165,16 +164,17 @@ def talker():
         position_msg.rhonn.append(rhonn_estimation)
 
         # Append position and velocity to data list
-        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity, rhonn_estimation.position, rhonn_estimation.velocity])
+        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity, rhonn_estimation.position, rhonn_estimation.velocity, rhonn_estimation.error_w1, rhonn_estimation.error_w2, controller_object.counter])
 
         # Publish the message
         position_msg.header.stamp = rospy.Time.now()
         position_msg.time = rospy.get_time()
         pub.publish(position_msg)
+        controller_object.control_law(position,velocity,rhonn_estimation.position,rhonn_estimation.velocity)
         rate.sleep()
 
     save_to_csv(data)
-    ending_node()
+    ending_node(pub)
 
 if __name__ == '__main__':
     try:

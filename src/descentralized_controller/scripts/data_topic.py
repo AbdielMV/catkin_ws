@@ -1,23 +1,23 @@
 #!/usr/bin/env python
-
-import rospy
-from std_msgs.msg import Float32MultiArray
+# -*- coding: utf-8 -*-
 import numpy as np
+from scipy.interpolate import interp1d
+import matplotlib.pyplot as plt
 
-def vector_publisher():
-    rospy.init_node('vector_publisher_node', anonymous=True)
-    pub = rospy.Publisher('/vector_data_topic', Float32MultiArray, queue_size=10)
-    rate = rospy.Rate(10)  # 10 Hz
+# Crear el intervalo de tiempo
+t = np.arange(0, 30, 0.001)
 
-    while not rospy.is_shutdown():
-        vector_data = np.random.rand(3)  # Generate a random 3D vector
-        msg = Float32MultiArray(data=vector_data)
-        pub.publish(msg)
-        rospy.loginfo('Published: %s', vector_data)
-        rate.sleep()
+# Valores de y correspondientes (de 0 a 45)
+y = np.linspace(0, 45, len(t))
 
-if __name__ == '__main__':
-    try:
-        vector_publisher()
-    except rospy.ROSInterruptException:
-        pass
+# Crear la interpolación cúbica
+cubic_interp = interp1d(t, y, kind='cubic')
+
+# Evaluar la spline en el intervalo de tiempo
+y_spline = cubic_interp(t)
+
+# Graficar la spline cúbica
+plt.plot(t, y_spline, label='Spline cúbica')
+plt.xlabel('Tiempo')
+plt.ylabel('Valor de y')
+plt.title('Spline Cúbica de y vs. Tiempo')

@@ -25,7 +25,7 @@ class Efk:
         return error_return
 
     def calculate_new_weights(self, rhonn_object):
-        etha = 0.7
+        etha = 0.7 
         h = rhonn_object.get_inputs()
         neuron = rhonn_object.neuron
         self.w_now = rhonn_object.w_weight

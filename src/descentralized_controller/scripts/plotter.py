@@ -37,7 +37,7 @@ def generate_time_vector(data_length, time_step):
 
 # Function to plot data
 def plot_data(time, position, velocity, rhonn_position, rhonn_velocity, rhonn_error_position, rhonn_error_velocity, set_point, control_law):
-    plt.figure(figsize=(12, 6))
+    plt.figure(1,figsize=(12, 6))
 
     # Plot position
     plt.subplot(2, 2, 1)
@@ -47,16 +47,16 @@ def plot_data(time, position, velocity, rhonn_position, rhonn_velocity, rhonn_er
     plt.xlabel('Time (s)')
     plt.ylabel('Position')
     plt.title('Position vs. Time')
-    #plt.legend()
+    plt.legend(loc='best')
     plt.grid()
 
     # Plot error x0
     plt.subplot(2, 2, 2)
-    plt.plot(time,control_law, label='Error_RHONN_x0')
+    plt.plot(time,rhonn_error_position, label='Error_RHONN_x0')
     plt.xlabel('Seconds (s)')
     plt.ylabel('Degrees')
     plt.title('Error Identification Position')
-    #plt.legend()
+    plt.legend(loc='best')
     plt.grid()
 
     # Plot velocity
@@ -66,19 +66,30 @@ def plot_data(time, position, velocity, rhonn_position, rhonn_velocity, rhonn_er
     plt.xlabel('Time (s)')
     plt.ylabel('Velocity')
     plt.title('Velocity vs. Time')
-    plt.legend()
+    plt.legend(loc='best')
     plt.grid()
 
-    # # Plot error x1
-    # plt.subplot(2, 2, 4)
-    # plt.plot(time,rhonn_error_velocity, label='Error_RHONN_x1')
-    # plt.xlabel('Seconds (s)')
-    # plt.ylabel('Degrees/Seconds')
-    # plt.title('Error Identification Velocity')
-    # plt.legend()
-    # plt.grid()
+    # Plot error x1
+    plt.subplot(2, 2, 4)
+    plt.plot(time,rhonn_error_velocity, label='Error_RHONN_x1')
+    plt.xlabel('Seconds (s)')
+    plt.ylabel('Degrees/Seconds')
+    plt.title('Error Identification Velocity')
+    plt.legend(loc='best')
+    plt.grid()
 
     plt.tight_layout()
+
+    plt.figure(2,figsize=(12, 6))
+    plt.plot(time, position, label='Position')
+    plt.plot(time,rhonn_position, label='Position_RHONN')
+    plt.plot(time, set_point, label = 'Reference')
+    plt.xlabel('Time (s)')
+    plt.ylabel('Position')
+    plt.title('Position vs. Time')
+    plt.legend(loc='best')
+    plt.grid()
+
     plt.show()
 
 # Main function

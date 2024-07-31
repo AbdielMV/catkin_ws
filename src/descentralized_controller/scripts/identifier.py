@@ -56,8 +56,9 @@ velocity = 0.0
 name = ""
 
 # Internal Clock Simulation
-time = 0
+clock_sim = 0.0
 dt = 1e-4
+time_end = 20.0
 
 def sensor_callback(data):
     global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
@@ -86,7 +87,7 @@ def sensor_callback(data):
     velocity = velocity_y
 
 def processing_data(event):
-    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1, time
+    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
     #print("Neurona 1")
     observer_1_value = neuron_1.observer_state(position, velocity)
     neuron_1_value = neuron_1.prediction_state(position,velocity)
@@ -98,7 +99,7 @@ def processing_data(event):
     neuron_2_value = neuron_2.prediction_state(position,velocity)
     error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity,2)
     efk_object_2.calculate_new_weights(neuron_2)
-    neuron_2.get_control_law(controller_object)
+    neuron_2.get_control_law(controller_object) #Its just to get u, not calculate u
 
     # Construction of Message
     rhonn_estimation.name = name
@@ -108,7 +109,7 @@ def processing_data(event):
     rhonn_estimation.error_w2 = error_2
     rhonn_estimation.obs_position = observer_1_value
     rhonn_estimation.obs_velocity = observer_2_value
-    rhonn_estimation.reference = controller_object.counter
+    rhonn_estimation.reference = controller_object.tetha
 
     # Debug messages (optional)
     # print("Valor X1_k+1 =", neuron_1_value)
@@ -140,29 +141,27 @@ def ending_node(pub):
     pub.publish(position_msg)
 
 def talker():
-    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity
+    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, clock_sim
     rospy.init_node('identifier', anonymous=True)
     pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
     rate = rospy.Rate(1e2) # 10hz
     rospy.Subscriber('/robot_states', WholeBodyState, sensor_callback, queue_size=1)
     rospy.Timer(rospy.Duration(dt), processing_data)
-    time_init = 0
+    """ time_init = 0
     time_end = 60
     left_time = time_end - time_init
     final_time = 1
-    flag1 = False
+    flag1 = False """
     data = []
 
-
-    while not rospy.is_shutdown():   #and left_time > 0
-        time_now = rospy.get_time()
+    #while not rospy.is_shutdown():
+    while clock_sim < time_end:   #and left_time > 0
+        """ time_now = rospy.get_time()
         if time_now != 0 and flag1 is False:
             final_time = time_now + time_end
             flag1 = True
         elif time_now > final_time:
-            break
-        # if time > 90:
-        #     break
+            break """
 
         # Clear the messages to avoid accumulation
         position_msg.joints = []
@@ -173,16 +172,18 @@ def talker():
         position_msg.rhonn.append(rhonn_estimation)
 
         # Append position and velocity to data list
-        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity, rhonn_estimation.position, rhonn_estimation.velocity, rhonn_estimation.error_w1, rhonn_estimation.error_w2, controller_object.counter, joint_estimation.effort])
+        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity, rhonn_estimation.position, rhonn_estimation.velocity, rhonn_estimation.error_w1, rhonn_estimation.error_w2, controller_object.tetha, joint_estimation.effort])
 
         # Publish the message
         position_msg.header.stamp = rospy.Time.now()
         position_msg.time = rospy.get_time()
         pub.publish(position_msg)
-        controller_object.control_law(position,velocity,rhonn_estimation.position,rhonn_estimation.velocity)
+        controller_object.control_law(position,velocity,rhonn_estimation.position,rhonn_estimation.velocity, clock_sim)
         rate.sleep()
+        clock_sim = clock_sim + 1e-2
 
     save_to_csv(data)
+    print("Final Time clock_sim:{}".format(clock_sim))
     ending_node(pub)
 
 if __name__ == '__main__':

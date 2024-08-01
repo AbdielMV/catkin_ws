@@ -11,8 +11,8 @@ class Rhonn:
         self.z_input = c_input
         self.w_weight = w_input
         self.neuron = number
-        self.W1_fixed = 10 #0.001 100
-        self.W2_fixed = 10 #0.1 10
+        self.W1_fixed = 10 #0.001 100  10
+        self.W2_fixed = 10 #0.1   10   10
         self.u = 0.0
         # self.ueq = None
         # self.v = None
@@ -42,6 +42,10 @@ class Rhonn:
         # self.fx_22 = None
         # self.fx_23 = None
         # self.set_point = None
+        self.fx_0_now = 0.0
+        self.fx_0_future = 0.0
+        self.fx_1_now = 0.0
+        self.fx_1_future = 0.0
 
     def observer_state(self, position, velocity):
         k1 = 0.01
@@ -66,21 +70,23 @@ class Rhonn:
     def prediction_state(self, position, velocity):
         #self.update_input(position,velocity)
         w_transposed = self.w_weight.transpose()
-        if self.neuron == 1:    
+        if self.neuron == 1:
+            self.fx_0_now = self.fx_0_future    
             self.z_input[0,0] = activation_function(position)
             fixed_result = self.W1_fixed*velocity
             # state_final_prediction = fx_11+fx_12+fixed_result
             state_final_prediction = (w_transposed[0,0]*self.z_input[0,0]) + (w_transposed[0,1]*self.z_input[1,0]) + fixed_result
-            fx_0 = state_final_prediction
-            return fx_0
+            self.fx_0_future = state_final_prediction
+            return self.fx_0_future
         else:
+            self.fx_1_now = self.fx_1_future
             self.z_input[0,0] = activation_function(position)
             self.z_input[1,0] = activation_function(velocity)
             fixed_result = self.W2_fixed*self.u
             #state_final_prediction = fx_21+fx_22+fx_23+fixed_result
             state_final_prediction = (w_transposed[0,0]*self.z_input[0,0]) + (w_transposed[0,1]*self.z_input[1,0]) + fixed_result
-            fx_1 = state_final_prediction
-            return fx_1
+            self.fx_1_future = state_final_prediction
+            return self.fx_1_future
     
 
     # def update_input(self, position, velocity):

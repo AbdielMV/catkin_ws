@@ -19,7 +19,7 @@ class Controller:
         self.alpha_anterior = 0
         self.tetha = 0.0
     
-    def control_law(self, position, velocity, rhonn_position, rhonn_velocity, clock_sim):
+    def control_law(self, position, velocity, clock_sim):
         # Set Point position for controller
         if self.flag1 == True:
             #print("Inside if flag1")
@@ -43,11 +43,14 @@ class Controller:
         tetha_end = 45.0
         time_end = 10
 
+        # print("Position from rhonn_position:{}".format(rhonn_position))
+        # print("Position from neuron_1:{}".format(self.neuron1.fx_0_now))
+
         # Trajectory Planning
         tetha_now = tetha_start + (((3*pow(time_now,2))/pow(time_end,2))-((2*pow(time_now,3))/pow(time_end,3)))*(tetha_end - tetha_start)
         tetha_future_1 = tetha_start + (((3*pow(time_future_1,2))/pow(time_end,2))-((2*pow(time_future_1,3))/pow(time_end,3)))*(tetha_end - tetha_start)
         tetha_future_2 = tetha_start + (((3*pow(time_future_2,2))/pow(time_end,2))-((2*pow(time_future_2,3))/pow(time_end,3)))*(tetha_end - tetha_start)
-
+        
         if time_now > time_end:
             tetha_now = tetha_end
             tetha_future_1 = tetha_end
@@ -69,48 +72,42 @@ class Controller:
         
 
         # Input - Output Linealization
-        k1 = 0.09 #0.75
-        k2 = 0.07 #0.01
-        k3 = 0.05
-        self.error_x0 = position - tetha_now
-        self.error_x1 = rhonn_position - tetha_future_1
+        # k1 = 0.09 #0.75
+        # k2 = 0.03 #0.01
+        # k3 = 0.05
+        # self.error_x0 = self.neuron1.fx_0_now - tetha_now
+        # self.error_x1 = self.neuron1.fx_0_future - tetha_future_1
 
-        # Linear solution
-        # v = -(k1*self.error_x0) - (k2*self.error_x1)
+        # # Linear solution
+        # # v = -(k1*self.error_x0) - (k2*self.error_x1)
         
-        # Super Twisting
-        s = (k2*self.error_x0) + self.error_x1
-        if s < 0:
-            sign_s = -1
-        else:
-            sign_s = 1
-        alpha_siguiente = self.alpha_anterior + (1e-4*(-k3 * sign_s))
-        v = -k1*pow(abs(s),0.5)*sign_s + self.alpha_anterior
-        #v = alpha_siguiente
+        # # Super Twisting
+        # s = (k2*self.error_x0) + self.error_x1
+        # if s < 0:
+        #     sign_s = -1
+        # else:
+        #     sign_s = 1
+        # alpha_siguiente = self.alpha_anterior + (1e-4*(-k3 * sign_s))
+        # v = -k1*pow(abs(s),0.5)*sign_s + self.alpha_anterior
+        # #v = alpha_siguiente
 
-        self.alpha_anterior = alpha_siguiente
+        # self.alpha_anterior = alpha_siguiente
 
-        control_law = (1.0/(self.neuron1.W1_fixed*self.neuron2.W2_fixed))*(v - (self.neuron1.w_weight[0,0]*activation_function(rhonn_position)) - self.neuron1.w_weight[1,0]
-                                                                - (self.neuron1.W1_fixed *((self.neuron2.w_weight[0,0]*activation_function(position))
-                                                                                           + (self.neuron2.w_weight[1,0]*activation_function(velocity)))) 
-                                                                                           + tetha_future_2 )
+        # control_law = (1.0/(self.neuron1.W1_fixed*self.neuron2.W2_fixed))*(v - (self.neuron1.w_weight[0,0]*activation_function(rhonn_position)) - self.neuron1.w_weight[1,0]
+        #                                                         - (self.neuron1.W1_fixed *((self.neuron2.w_weight[0,0]*activation_function(position))
+        #                                                                                    + (self.neuron2.w_weight[1,0]*activation_function(velocity)))) 
+        #                                                                                    + tetha_future_2 )
         
         # Block Control
-        # k1 = -3.5
-        # k2 = -1e-3
-        # self.error_x0 = position - set_point
-        # #print("error_x0: {}".format(self.error_x0))
-        # self.error_x1 = velocity - 0
-        # #print("error_x1: {}".format(self.error_x1))
-        # self.error_x0_1 = rhonn_position - time_future_1
-        # # print("error_x0_1: {}".format(self.error_x0_1))
-        
-        # # print("1/self.neuron2.W2_fixed: {}".format(1.0/self.neuron2.W2_fixed))
-        # # print("k2*self.error_x1: {}".format(k2*self.error_x1))
+        k1 = 5e-3
+        k2 = 1e-4
+        self.error_x0 = self.neuron1.fx_0_now - tetha_now
+        self.error_x1 = self.neuron2.fx_1_now - 0
+        self.error_x0_1 = self.neuron1.fx_0_future - tetha_future_1
 
-        # ueq = (1.0/self.neuron2.W2_fixed)*((k2*self.error_x1)-(self.neuron2.w_weight[0,0]*activation_function(position))
-        #                                  -(self.neuron2.w_weight[1,0]*activation_function(velocity))
-        #                                  +((1.0/self.neuron1.W1_fixed)*(-(self.neuron1.w_weight[0,0]*activation_function(rhonn_position))-self.neuron1.w_weight[1,0]+time_future_2+(k1*self.error_x0_1))))
+        control_law = (1.0/self.neuron2.W2_fixed)*((k2*self.error_x1)-(self.neuron2.w_weight[0,0]*activation_function(position))
+                                         -(self.neuron2.w_weight[1,0]*activation_function(velocity))
+                                         +((1.0/self.neuron1.W1_fixed)*(-(self.neuron1.w_weight[0,0]*activation_function(self.neuron1.fx_0_future))-self.neuron1.w_weight[1,0]+tetha_future_2+(k1*self.error_x0_1))))
         
         #Inverse Optimal Control
         #f = [(self.neuron1.w_weight[0,0]*activation_function(rhonn_position)) + self.neuron1.w_weight[1,0] + (self.neuron1.W1_fixed * velocity); ]
@@ -124,9 +121,9 @@ class Controller:
         # self.counter = self.counter + 1
 
 
-        if np.abs(control_law) <= 15:
+        if np.abs(control_law) <= 14:
            self.u = control_law
         else:
-           self.u = (15*(control_law/np.abs(control_law)))
+           self.u = (14*(control_law/np.abs(control_law)))
 
         return self.u

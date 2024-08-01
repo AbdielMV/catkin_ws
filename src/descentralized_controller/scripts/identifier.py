@@ -87,7 +87,7 @@ def sensor_callback(data):
     velocity = velocity_y
 
 def processing_data(event):
-    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
+    global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1, clock_sim
     #print("Neurona 1")
     observer_1_value = neuron_1.observer_state(position, velocity)
     neuron_1_value = neuron_1.prediction_state(position,velocity)
@@ -100,6 +100,7 @@ def processing_data(event):
     error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity,2)
     efk_object_2.calculate_new_weights(neuron_2)
     neuron_2.get_control_law(controller_object) #Its just to get u, not calculate u
+    
 
     # Construction of Message
     rhonn_estimation.name = name
@@ -122,6 +123,9 @@ def processing_data(event):
 
     # time = time + dt
     # print("Time simulation:{}".format(time))
+
+def control_law_calculation(event):
+    controller_object.control_law(position,velocity, clock_sim) #Here is calculated the control law
 
 def save_to_csv(data):
         with open('vector_data.csv', 'wb') as csvfile:
@@ -147,6 +151,7 @@ def talker():
     rate = rospy.Rate(1e2) # 10hz
     rospy.Subscriber('/robot_states', WholeBodyState, sensor_callback, queue_size=1)
     rospy.Timer(rospy.Duration(dt), processing_data)
+    rospy.Timer(rospy.Duration(1e-2), control_law_calculation)
     """ time_init = 0
     time_end = 60
     left_time = time_end - time_init
@@ -178,7 +183,6 @@ def talker():
         position_msg.header.stamp = rospy.Time.now()
         position_msg.time = rospy.get_time()
         pub.publish(position_msg)
-        controller_object.control_law(position,velocity,rhonn_estimation.position,rhonn_estimation.velocity, clock_sim)
         rate.sleep()
         clock_sim = clock_sim + 1e-2
 

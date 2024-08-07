@@ -28,5 +28,5 @@
   #define WHOLE_BODY_STATE_MSGS_PUBLIC_TYPE
 #endif
 #endif  // WHOLE_BODY_STATE_MSGS__VISIBILITY_CONTROL_H_
-// Generated 09-Jul-2024 13:59:46
+// Generated 07-Aug-2024 00:45:43
 // Copyright 2019-2020 The MathWorks, Inc.

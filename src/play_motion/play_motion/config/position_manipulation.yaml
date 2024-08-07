@@ -38,7 +38,7 @@ art_1:
 
   j_0:
     name: "arm_right_1_joint"
-    #hombro derecho numero i=22
+    #hombro derecho numero i=21
     position: 1.8
 
   j_1:

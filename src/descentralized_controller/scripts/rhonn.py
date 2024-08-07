@@ -14,34 +14,10 @@ class Rhonn:
         self.W1_fixed = 10 #0.001 100  10
         self.W2_fixed = 10 #0.1   10   10
         self.u = 0.0
-        # self.ueq = None
-        # self.v = None
-        # self.fx_0 = None
-        # self.fx_1 = None
-        # self.error_x0 = None
-        # self.error_x1 = None
-        # self.error_x1_old = None
-        # self.counter = None
-        # self.sign_ex0 = None
-        # self.sign_ex1 = None
         self.observer_x0_actual = 0.0
         self.observer_x1_actual = 0.0
         self.observer_x0_prediction = 0.0
         self.observer_x1_prediction = 0.0
-        # self.error_obs1 = None
-        # self.error_obs2 = None
-        # self.sign_eobs1 = None
-        # self.sign_eobs2 = None
-        # self.v1 = None
-        # self.v2 = None
-        # self.fixed_result = None
-        # self.state_final_prediction = None
-        # self.fx_11 = None
-        # self.fx_12 = None
-        # self.fx_21 = None
-        # self.fx_22 = None
-        # self.fx_23 = None
-        # self.set_point = None
         self.fx_0_now = 0.0
         self.fx_0_future = 0.0
         self.fx_1_now = 0.0
@@ -68,13 +44,11 @@ class Rhonn:
             return self.observer_x1_prediction
 
     def prediction_state(self, position, velocity):
-        #self.update_input(position,velocity)
         w_transposed = self.w_weight.transpose()
         if self.neuron == 1:
             self.fx_0_now = self.fx_0_future    
             self.z_input[0,0] = activation_function(position)
             fixed_result = self.W1_fixed*velocity
-            # state_final_prediction = fx_11+fx_12+fixed_result
             state_final_prediction = (w_transposed[0,0]*self.z_input[0,0]) + (w_transposed[0,1]*self.z_input[1,0]) + fixed_result
             self.fx_0_future = state_final_prediction
             return self.fx_0_future
@@ -83,19 +57,9 @@ class Rhonn:
             self.z_input[0,0] = activation_function(position)
             self.z_input[1,0] = activation_function(velocity)
             fixed_result = self.W2_fixed*self.u
-            #state_final_prediction = fx_21+fx_22+fx_23+fixed_result
             state_final_prediction = (w_transposed[0,0]*self.z_input[0,0]) + (w_transposed[0,1]*self.z_input[1,0]) + fixed_result
             self.fx_1_future = state_final_prediction
             return self.fx_1_future
-    
-
-    # def update_input(self, position, velocity):
-    #     if self.neuron == 1:
-    #         self.z_input[0,0] = activation_function(position)
-    #     else:
-    #         self.z_input[0,0] = activation_function(position)
-    #         self.z_input[1,0] = activation_function(velocity)
-    #     pass
 
     def update_weights(self, new_weights):
         self.w_weight = new_weights

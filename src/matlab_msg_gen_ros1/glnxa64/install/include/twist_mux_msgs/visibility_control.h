@@ -28,5 +28,5 @@
   #define TWIST_MUX_MSGS_PUBLIC_TYPE
 #endif
 #endif  // TWIST_MUX_MSGS__VISIBILITY_CONTROL_H_
-// Generated 09-Jul-2024 13:59:42
+// Generated 07-Aug-2024 00:45:39
 // Copyright 2019-2020 The MathWorks, Inc.

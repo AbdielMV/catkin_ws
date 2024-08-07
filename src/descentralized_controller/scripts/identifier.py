@@ -57,15 +57,13 @@ name = ""
 
 # Internal Clock Simulation
 clock_sim = 0.0
-dt = 1e-4
-time_end = 20.0
+dt = 0.00001
+dt_controller = 0.01
+time_end = 15.0
 
 def sensor_callback(data):
     global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, position_1, velocity_1, position_y1, velocity_y1
 
-    #name = data.joints[21].name
-    #position = (data.joints[21].position*180)/np.pi
-    #velocity = (data.joints[21].velocity*180)/np.pi
     name = data.joints[21].name
     position = data.joints[21].position
     velocity = data.joints[21].velocity
@@ -74,7 +72,7 @@ def sensor_callback(data):
     position = (position*180)/np.pi
     velocity = (velocity*180)/np.pi
 
-    # # Filter first degree
+    # Filter first degree
     position_y = position_y1*0.99+position_1*0.00995
     velocity_y = velocity_y1*0.99+velocity_1*0.00995
     position_1 = position
@@ -100,6 +98,7 @@ def processing_data(event):
     error_2 = efk_object_2.error_estimation(neuron_2_value,position,velocity,2)
     efk_object_2.calculate_new_weights(neuron_2)
     neuron_2.get_control_law(controller_object) #Its just to get u, not calculate u
+
     
 
     # Construction of Message
@@ -112,17 +111,10 @@ def processing_data(event):
     rhonn_estimation.obs_velocity = observer_2_value
     rhonn_estimation.reference = controller_object.tetha
 
-    # Debug messages (optional)
-    # print("Valor X1_k+1 =", neuron_1_value)
-    # print("Valor X2_k+1 =", neuron_2_value)
-
     joint_estimation.name = name
     joint_estimation.position = position
     joint_estimation.velocity = velocity
     joint_estimation.effort = neuron_2.u
-
-    # time = time + dt
-    # print("Time simulation:{}".format(time))
 
 def control_law_calculation(event):
     controller_object.control_law(position,velocity, clock_sim) #Here is calculated the control law
@@ -130,7 +122,7 @@ def control_law_calculation(event):
 def save_to_csv(data):
         with open('vector_data.csv', 'wb') as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow(['Time', 'position', 'velocity', 'rhonn_x0', 'rhonn_x1', 'error_x0', 'error_x1', 'set_point', 'effort'])  # Assuming 3D vectors
+            writer.writerow(['Time', 'position', 'velocity', 'rhonn_x0', 'rhonn_x1', 'error_x0', 'error_x1', 'set_point', 'effort', 'error_tracking_x0', 'error_tracking_x1', 'surface', 'w11', 'w12', 'w21', 'w22'])  # Assuming 3D vectors
             writer.writerows(data)
         rospy.loginfo('Data saved to vector_data.csv')
 
@@ -151,22 +143,11 @@ def talker():
     rate = rospy.Rate(1e2) # 10hz
     rospy.Subscriber('/robot_states', WholeBodyState, sensor_callback, queue_size=1)
     rospy.Timer(rospy.Duration(dt), processing_data)
-    rospy.Timer(rospy.Duration(1e-2), control_law_calculation)
-    """ time_init = 0
-    time_end = 60
-    left_time = time_end - time_init
-    final_time = 1
-    flag1 = False """
+    rospy.Timer(rospy.Duration(dt_controller), control_law_calculation)
     data = []
 
     #while not rospy.is_shutdown():
     while clock_sim < time_end:   #and left_time > 0
-        """ time_now = rospy.get_time()
-        if time_now != 0 and flag1 is False:
-            final_time = time_now + time_end
-            flag1 = True
-        elif time_now > final_time:
-            break """
 
         # Clear the messages to avoid accumulation
         position_msg.joints = []
@@ -177,14 +158,14 @@ def talker():
         position_msg.rhonn.append(rhonn_estimation)
 
         # Append position and velocity to data list
-        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity, rhonn_estimation.position, rhonn_estimation.velocity, rhonn_estimation.error_w1, rhonn_estimation.error_w2, controller_object.tetha, joint_estimation.effort])
+        data.append([rospy.get_time(), joint_estimation.position, joint_estimation.velocity, rhonn_estimation.position, rhonn_estimation.velocity, rhonn_estimation.error_w1, rhonn_estimation.error_w2, controller_object.tetha, joint_estimation.effort, controller_object.error_x0, controller_object.error_x1, controller_object.s, neuron_1.w_weight[0,0], neuron_1.w_weight[1,0], neuron_2.w_weight[0,0], neuron_2.w_weight[1,0]])
 
         # Publish the message
         position_msg.header.stamp = rospy.Time.now()
         position_msg.time = rospy.get_time()
         pub.publish(position_msg)
         rate.sleep()
-        clock_sim = clock_sim + 1e-2
+        clock_sim = clock_sim + dt_controller
 
     save_to_csv(data)
     print("Final Time clock_sim:{}".format(clock_sim))

@@ -10,7 +10,7 @@
 #include <whole_body_state_msgs/JointState.h>
 #include <whole_body_state_msgs/WholeBodyTrajectory.h>
 #include <whole_body_state_msgs/WholeBodyState.h>
-#include <whole_body_state_msgs/Rhonn.h>
+#include <whole_body_state_msgs/RhonnState.h>
 
 #include "Rhonn.h" // Include the Rhonn header
 #include "Efk.h"   // Include the Efk header

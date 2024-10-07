@@ -139,7 +139,6 @@ def ending_node(pub):
 def talker():
     global position_msg, joint_estimation, rhonn_estimation, name, position, velocity, clock_sim
     rospy.init_node('identifier', anonymous=True)
-<<<<<<< HEAD
     pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
     rate = rospy.Rate(1e2) # 10hz
     rospy.Subscriber('/robot_states', WholeBodyState, sensor_callback, queue_size=1)
@@ -149,11 +148,6 @@ def talker():
 
     #while not rospy.is_shutdown():
     while clock_sim < time_end:   #and left_time > 0
-=======
-    pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=10)
-    rospy.Subscriber('/robot_states', WholeBodyState, callback, queue_size=10)
-    rate = rospy.Rate(100) # 10hz
->>>>>>> main
 
         # Clear the messages to avoid accumulation
         position_msg.joints = []

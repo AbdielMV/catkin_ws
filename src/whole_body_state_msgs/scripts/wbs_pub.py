@@ -126,13 +126,17 @@ def talker():
 #   x = wbs._wb_iface._model.njoints - 2
 #   print(x)
 #   print(wbs._wb_iface._msg.joints)
-   rate = rospy.Rate(1e2) # 10hz
+   rate = rospy.Rate(50) # 10hz
+   rospy.loginfo('wbs node working')
 
 
    while not rospy.is_shutdown():
-      t =  rospy.Time.now().secs
+      t_secs =  rospy.Time.now().secs
+      t_nsecs = rospy.Time.now().nsecs
+      t = t_secs + t_nsecs*10e-9
       hello_str = "hello world %s" % rospy.get_time()
       #rospy.loginfo(hello_str)
+      
       pub.publish(hello_str)
       wbs.publish(t, q, v, tau, p, pd, f, s)
       rate.sleep()

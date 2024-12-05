@@ -12,16 +12,22 @@ from whole_body_state_msgs.msg import JointState, WholeBodyTrajectory, WholeBody
 dt = 0.001 #0.0025
 
 # Gains Lineal Control
-k1 = 3
-k2 = 1
+k1 = -3 #-45
+k2 = -1 #-2
+k3 = 0
+
+# Gains Super-Twisting
+# k1 = -7  #-75 
+# k2 = 0.8 #1.3 
+# k3 = 0.1 #0.1 
 
 tetha_inicial = 0
-tetha_final = np.deg2rad(40)
-T = 2
+tetha_final = np.deg2rad(45)
+T = 1
 k = 0
 time_now = 0
 time_past = 0
-duration = 3
+duration = 2
 samples = duration/dt
 X = np.zeros((2,samples))
 XN = np.zeros((2,samples+1))
@@ -37,10 +43,14 @@ time_sim = np.zeros((1,samples+2))
 y = np.ones((1,samples+2))
 z0 = np.zeros((1,samples+1))
 z1 = np.zeros((1,samples+1))
-v = 0.0
+s = np.zeros((1,samples+1))
+alpha = np.zeros((1,samples+1))
+v = np.zeros((1,samples+1))
+x1d = np.zeros((1,samples+1))
 name = ""
 position = 0.0
 velocity = 0.0
+effort = 0.0
 position_y1 = 0.0
 velocity_y1 = 0.0
 position_1 = 0.0
@@ -50,13 +60,14 @@ pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
 
 def msg_callback(data): #dt = 0.01s
 
-    global y,k,time_now,X,XN,w1,w2,dt,name,position,velocity
+    global y,k,time_now,X,XN,w1,w2,dt,k3,name,position,velocity,effort
     global time_past,u,p1,p2,tetha_inicial,tetha_final,position_1,velocity_1
-    global T,error,z0,z1,v,pub,position_y1,velocity_y1
+    global T,error,z0,z1,s,alpha,v,x1d,pub,position_y1,velocity_y1
 
     name = data.joints[21].name
     position = data.joints[21].position
     velocity = data.joints[21].velocity
+    effort = data.joints[21].effort
 
     time_now = data.time
 
@@ -89,7 +100,8 @@ def msg_callback(data): #dt = 0.01s
 
 
     XN[0,k+1] = np.dot(w1[:,[k]].T,C1) + (w13*X[1,k])
-    XN[1,k+1] = np.dot(w2[:,[k]].T,C2) + (w23*u[0,k]*dt)
+    # XN[1,k+1] = np.dot(w2[:,[k]].T,C2) + (w23*u[0,k]*dt)
+    XN[1,k+1] = np.dot(w2[:,[k]].T,C2) + (w23*effort*dt)
     
     #EFK
     dimH1 = C1.shape
@@ -138,20 +150,34 @@ def msg_callback(data): #dt = 0.01s
     #Control
 
     #Block Control
-    z0[0,k] = X[0,k] - y[0,k]
+    z0[0,k] = y[0,k] - X[0,k]
 
-    z0[0,k+1] = XN[0,k+1] - y[0,k+1]
+    z0[0,k+1] = y[0,k+1] - XN[0,k+1]
 
-    z1[0,k] = z0[0,k+1]
+    x1d[0,k] = (1.0/-w13)*((k1*z0[0,k]) - y[0,k+1] + (w1[0,k]*sgm(X[0,k])) + w1[1,k])
+
+    x1d[0,k+1] = (1.0/-w13)*((k1*z0[0,k+1]) - y[0,k+2] + (w1[0,k+1]*sgm(X[0,k+1])) + w1[1,k+1])
+
+    z1[0,k] = x1d[0,k] - X[1,k]
     
-    v = (-k1*z0[0,k]) + (-k2*z1[0,k])
+    z1[0,k+1] = x1d[0,k+1] - XN[1,k+1]
 
-    z1[0,k+1] = v
+    s[0,k] = z1[0,k+1]
+
+    alpha[0,k+1] = alpha[0,k] + (dt*(-k3*np.sign(s[0,k])))
+
+    v[0,k] = (-k2*np.sqrt(np.abs(s[0,k]))*np.sign(s[0,k])) + alpha[0,k]
 
     #Lineal
-    u[0,k+1] = (1.0/(w13*w23))*(v + y[0,k+2] + (-w1[0,k+1]*sgm(XN[0,k+1])) + (-w1[1,k+1]) + (-w13*(w2[0,k]*sgm(X[0,k]))) + (-w13*(w2[1,k]*sgm(X[1,k]))))
+    u[0,k+1] = (1.0/-w23)*((k2*z1[0,k]) - x1d[0,k+1] + (w2[0,k]*sgm(X[0,k])) + (w2[1,k]*sgm(X[1,k])))
 
-    k += 1
+    #Super-Twisting
+    # u[0,k+1] = (1.0/-w23)*(v[0,k] - x1d[0,k+1] + (w2[0,k]*sgm(X[0,k])) + (w2[1,k]*sgm(X[1,k])))
+
+    #Open Loop
+    # u[0,k+1] = np.sin(time_sim[0,k])*2
+
+    k = k + 1
 
     #Control Publisher
     position_msg = WholeBodyState()
@@ -187,7 +213,7 @@ def my_node():
    
     rospy.spin()
 
-    plot_data(samples,time_sim,X,XN,y,error,z0,z1)
+    plot_data(samples,time_sim,X,XN,y,error,x1d,z0,z1)
 
 def sgm(state):
     return np.tanh(state)
@@ -198,7 +224,7 @@ def tetha_function(t):
     tetha = tetha_inicial + (((3*t**2)/T**2)-((2*t**3)/T**3))*(tetha_final - tetha_inicial)
     return tetha
 
-def plot_data(count,time_series,sensor,rhonn,ref,error,z1,z2):
+def plot_data(count,time_series,sensor,rhonn,ref,error,ref2,z1,z2):
 
     # Close any previously opened plots
     plt.close('all')
@@ -220,6 +246,7 @@ def plot_data(count,time_series,sensor,rhonn,ref,error,z1,z2):
     plt.subplot(2,1,2)
     plt.plot(time_series[0,:count],np.rad2deg(sensor[1,:]), label='Velocity')
     plt.plot(time_series[0,:count],np.rad2deg(rhonn[1,:count]), label='RHONN')
+    # plt.plot(time_series[0,:count],np.rad2deg(ref2[0,:count]), label='X1d')
     plt.xlabel('Time (s)')
     plt.ylabel('Velocity')
     plt.title('Position vs. Time')
@@ -245,17 +272,24 @@ def plot_data(count,time_series,sensor,rhonn,ref,error,z1,z2):
     plt.grid()
 
     plt.figure(3,figsize=(12,6))
-
     plt.plot(time_series[0,:count],u[0,:count], label='Torque')
     plt.xlabel('Time (s)')
     plt.ylabel('Torque')
     plt.title('Control Law')
     plt.legend(loc='best')
     plt.grid()
-
     plt.figure(4,figsize=(12, 6))
 
+    plt.subplot(2,1,1)
     plt.plot(time_series[0,:count],np.rad2deg(z1[0,:count]), label='Error 1')
+    plt.xlabel('Time (s)')
+    plt.ylabel('Value')
+    plt.title('Tracking Error')
+    plt.legend(loc='best')
+    plt.grid()
+
+    plt.subplot(2,1,2)
+    plt.plot(time_series[0,:count],np.rad2deg(z2[0,:count]), label='Error 2')
     plt.xlabel('Time (s)')
     plt.ylabel('Value')
     plt.title('Tracking Error')

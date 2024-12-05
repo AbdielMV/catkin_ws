@@ -92,7 +92,7 @@ class Controller:
                                                                 - (self.neuron1.W1_fixed *((self.neuron2.w_weight[0,0]*activation_function(position))
                                                                                            + (self.neuron2.w_weight[1,0]*activation_function(velocity)))) 
                                                                                            + tetha_future_2 ) """
-        control_law = -(self.neuron1.w_weight[1,0] - v - tetha_future_2 + self.neuron1.W1_fixed * ((self.neuron2.w_weight[0,0]*activation_function(position))+(self.neuron2.w_weight[1,0]*activation_function(velocity))) + (self.neuron1.w_weight[0,0]*activation_function(self.neuron1.fx_0_future)))/(self.neuron1.W1_fixed*self.neuron2.W2_fixed)
+        # control_law = -(self.neuron1.w_weight[1,0] - v - tetha_future_2 + self.neuron1.W1_fixed * ((self.neuron2.w_weight[0,0]*activation_function(position))+(self.neuron2.w_weight[1,0]*activation_function(velocity))) + (self.neuron1.w_weight[0,0]*activation_function(self.neuron1.fx_0_future)))/(self.neuron1.W1_fixed*self.neuron2.W2_fixed)
         # control_law = 13.8
         
         # Block Control
@@ -110,12 +110,12 @@ class Controller:
         #f = [(self.neuron1.w_weight[0,0]*activation_function(rhonn_position)) + self.neuron1.w_weight[1,0] + (self.neuron1.W1_fixed * velocity); ]
 
         # Open loop (spline)
-        # angulo_temporal = (self.counter*np.pi)/180
-        # if angulo_temporal > 360:
-        #     self.counter = 0
+        angulo_temporal = (self.counter*np.pi)/180
+        if angulo_temporal > 360:
+            self.counter = 0
 
-        # ueq = 10*np.sin(angulo_temporal*1) #Valor maximo de 10 a 14
-        # self.counter = self.counter + 1
+        control_law = 10*np.sin(angulo_temporal*1) #Valor maximo de 10 a 14
+        self.counter = self.counter + 1
 
 
         if np.abs(control_law) <= 20:

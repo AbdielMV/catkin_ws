@@ -57,7 +57,7 @@ name = ""
 
 # Internal Clock Simulation
 clock_sim = 0.0
-dt = 0.00001
+dt = 0.01 #0.00001
 dt_controller = 0.01
 time_end = 15.0
 

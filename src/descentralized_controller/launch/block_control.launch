@@ -1,0 +1,14 @@
+<launch>
+    <node pkg="descentralized_controller" type="motor_eqn.py" name="motor_sim" output="screen">
+    </node>
+
+    <node pkg="descentralized_controller" type="identificator.py" name="identificator_joint_0" output="screen">
+        <param name="joint_index" value="0"/>
+    </node>
+
+    <node pkg="descentralized_controller" type="block_control.py" name="block_control_joint_0" output="screen">
+        <param name="joint_index" value="0"/>
+    </node>
+
+    <!-- Add more nodes for additional joints -->
+</launch>

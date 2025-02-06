@@ -9,222 +9,35 @@ import matplotlib.pyplot as plt
 from std_msgs.msg import String
 from whole_body_state_msgs.msg import JointState, WholeBodyTrajectory, WholeBodyState, RhonnState
 
-dt = 0.001 #0.0025
+def rhonn_states_callback(data, joint_index):
+    global position_rhonn,velocity_rhonn, w11, w12, w21, w22
 
-# Gains Lineal Control
-k1 = -3 #-45
-k2 = -1 #-2
-k3 = 0
+    # Extract joint-specific information
+    position_rhonn = data.rhonn[joint_index].position
+    velocity_rhonn = data.rhonn[joint_index].velocity
+    w11 = data.rhonn[joint_index].w11
+    w12 = data.rhonn[joint_index].w12
+    w21 = data.rhonn[joint_index].w21
+    w22 = data.rhonn[joint_index].w22
 
-# Gains Super-Twisting
-# k1 = -7  #-75 
-# k2 = 0.8 #1.3 
-# k3 = 0.1 #0.1 
+def robot_states_callback(data, joint_index):
+    global name,position,velocity,time_now
 
-tetha_inicial = 0
-tetha_final = np.deg2rad(45)
-T = 1
-k = 0
-time_now = 0
-time_past = 0
-duration = 2
-samples = duration/dt
-X = np.zeros((2,samples))
-XN = np.zeros((2,samples+1))
-w1 = np.zeros((2,samples+1))
-w2 = np.zeros((2,samples+1))
-u = np.ones((1,samples+1))
-error = np.zeros((2,samples))
-p1 = np.zeros((samples+1,2,2))
-p2 = np.zeros((samples+1,2,2))
-p1[0] = 1e10 * np.eye(2)
-p2[0] = 1e10 * np.eye(2)
-time_sim = np.zeros((1,samples+2))
-y = np.ones((1,samples+2))
-z0 = np.zeros((1,samples+1))
-z1 = np.zeros((1,samples+1))
-s = np.zeros((1,samples+1))
-alpha = np.zeros((1,samples+1))
-v = np.zeros((1,samples+1))
-x1d = np.zeros((1,samples+1))
-name = ""
-position = 0.0
-velocity = 0.0
-effort = 0.0
-position_y1 = 0.0
-velocity_y1 = 0.0
-position_1 = 0.0
-velocity_1 = 0.0
-pub = rospy.Publisher('/reemc/efforts', WholeBodyState, queue_size=1)
-
-
-def msg_callback(data): #dt = 0.01s
-
-    global y,k,time_now,X,XN,w1,w2,dt,k3,name,position,velocity,effort
-    global time_past,u,p1,p2,tetha_inicial,tetha_final,position_1,velocity_1
-    global T,error,z0,z1,s,alpha,v,x1d,pub,position_y1,velocity_y1
-
-    name = data.joints[21].name
-    position = data.joints[21].position
-    velocity = data.joints[21].velocity
-    effort = data.joints[21].effort
-
+    # Extract joint-specific information
+    name = data.joints[joint_index].name
+    position = data.joints[joint_index].position
+    velocity = data.joints[joint_index].velocity
     time_now = data.time
 
-    print('time {}\n'.format(time_sim[0,k]))
-
-    #Time simulation
-    time_sim[0,k+1] = time_sim[0,k] + dt
-    time_sim[0,k+2] = time_sim[0,k+1] + dt   
-    
-    w13 = 0.1
-    w23 = 1
-
-    #First degree filter
-    position_y = position_y1*0.99+position_1*0.00995
-    velocity_y = velocity_y1*0.99+velocity_1*0.00995
-    position_1 = position
-    velocity_1 = velocity
-    position_y1 = position_y
-    velocity_y1 = velocity_y
-    #Change of variable for use those names
-    position = position_y
-    velocity = velocity_y
-    
-    #RHONN
-    X[0,k] = position
-    X[1,k] = velocity
-
-    C1 = np.array([[sgm(X[0, k])], [1]],dtype=float)
-    C2 = np.array([[sgm(X[0, k])], [sgm(X[1, k])]],dtype=float)
-
-
-    XN[0,k+1] = np.dot(w1[:,[k]].T,C1) + (w13*X[1,k])
-    # XN[1,k+1] = np.dot(w2[:,[k]].T,C2) + (w23*u[0,k]*dt)
-    XN[1,k+1] = np.dot(w2[:,[k]].T,C2) + (w23*effort*dt)
-    
-    #EFK
-    dimH1 = C1.shape
-    dimH2 = C2.shape
-
-    H1 = C1
-    H2 = C2
-    eta = 0.5
-    error[0,k] = X[0,k] - XN[0,k+1]
-    error[1,k] = X[1,k] - XN[1,k+1]
-
-    #Neuron 1
-    R1 = 1e5
-    Q1 = 1e5*np.eye(dimH1[0])
-    M1 = 1.0/(R1 + np.dot(H1.T,np.dot(p1[k],H1)))
-    #K1 equation
-    K1 = np.dot(p1[k],np.dot(H1,M1))
-    #w1 equation
-    w1[:,[k+1]] = w1[:,[k]] + np.dot(eta,np.dot(K1,error[0,k]))
-    #p1 equation
-    p1[k+1] = p1[k] - np.dot(K1,np.dot(H1.T,p1[k])) + Q1
-
-    
-    #Neuron 2
-    R2 = 1e8
-    Q2 = 1e7*np.eye(dimH2[0])
-    M2 = 1.0/(R2 + np.dot(H2.T,np.dot(p2[k],H2)))
-    #K2 equation
-    K2 = np.dot(p2[k],np.dot(H2,M2))
-    #w2 equation
-    w2[:,[k+1]] = w2[:,[k]] + np.dot(eta,np.dot(K2,error[1,k]))
-    #p2 equation
-    p2[k+1] = p2[k] - np.dot(K2,np.dot(H2.T,p2[k])) + Q2
-
-
-    #Planner
-    if time_sim[0,k] <= T:
-        y[0,k] = tetha_function(time_sim[0,k])
-        y[0,k+1] = tetha_function(time_sim[0,k+1])
-        y[0,k+2] = tetha_function(time_sim[0,k+2])
-    else:
-        y[0,k] = tetha_final
-        y[0,k+1] = tetha_final
-        y[0,k+2] = tetha_final
-
-    #Control
-
-    #Block Control
-    z0[0,k] = y[0,k] - X[0,k]
-
-    z0[0,k+1] = y[0,k+1] - XN[0,k+1]
-
-    x1d[0,k] = (1.0/-w13)*((k1*z0[0,k]) - y[0,k+1] + (w1[0,k]*sgm(X[0,k])) + w1[1,k])
-
-    x1d[0,k+1] = (1.0/-w13)*((k1*z0[0,k+1]) - y[0,k+2] + (w1[0,k+1]*sgm(X[0,k+1])) + w1[1,k+1])
-
-    z1[0,k] = x1d[0,k] - X[1,k]
-    
-    z1[0,k+1] = x1d[0,k+1] - XN[1,k+1]
-
-    s[0,k] = z1[0,k+1]
-
-    alpha[0,k+1] = alpha[0,k] + (dt*(-k3*np.sign(s[0,k])))
-
-    v[0,k] = (-k2*np.sqrt(np.abs(s[0,k]))*np.sign(s[0,k])) + alpha[0,k]
-
-    #Lineal
-    u[0,k+1] = (1.0/-w23)*((k2*z1[0,k]) - x1d[0,k+1] + (w2[0,k]*sgm(X[0,k])) + (w2[1,k]*sgm(X[1,k])))
-
-    #Super-Twisting
-    # u[0,k+1] = (1.0/-w23)*(v[0,k] - x1d[0,k+1] + (w2[0,k]*sgm(X[0,k])) + (w2[1,k]*sgm(X[1,k])))
-
-    #Open Loop
-    # u[0,k+1] = np.sin(time_sim[0,k])*2
-
-    k = k + 1
-
-    #Control Publisher
-    position_msg = WholeBodyState()
-    joint_estimation = JointState()
-
-    joint_estimation.name = name
-    joint_estimation.effort = u[0,k]
-
-    position_msg.joints.append(joint_estimation)
-    position_msg.header.stamp = rospy.Time.now()
-    position_msg.time = rospy.get_time()
-    pub.publish(position_msg)
-
-    if k >= samples-2:
-        joint_estimation.name = name
-        joint_estimation.effort = 0.5
-
-        position_msg.joints.append(joint_estimation)
-        position_msg.header.stamp = rospy.Time.now()
-        position_msg.time = rospy.get_time()
-        pub.publish(position_msg)
-        rospy.signal_shutdown('Time is over')
-
-
-
-def my_node():
-
-    rospy.init_node('identifier', anonymous=True)
-
-    rospy.Subscriber('/robot_states', WholeBodyState, msg_callback, queue_size=1)
-
-    # rospy.Timer(rospy.Duration(0.005),publisher_message)
-   
-    rospy.spin()
-
-    plot_data(samples,time_sim,X,XN,y,error,x1d,z0,z1)
 
 def sgm(state):
     return np.tanh(state)
 
-def tetha_function(t):
-    global tetha_inicial,tetha_final,T
-    
-    tetha = tetha_inicial + (((3*t**2)/T**2)-((2*t**3)/T**3))*(tetha_final - tetha_inicial)
+def tetha_function(t,tetha_start,tetha_end,T):
+    tetha = tetha_start + (((3*t**2)/T**2)-((2*t**3)/T**3))*(tetha_end - tetha_start)
     return tetha
 
-def plot_data(count,time_series,sensor,rhonn,ref,error,ref2,z1,z2):
+""" def plot_data(count,time_series,sensor,rhonn,ref,error,ref2,z1,z2,u):
 
     # Close any previously opened plots
     plt.close('all')
@@ -236,7 +49,7 @@ def plot_data(count,time_series,sensor,rhonn,ref,error,ref2,z1,z2):
     plt.subplot(2,1,1)
     plt.plot(time_series[0,:count],np.rad2deg(sensor[0,:]), label='Position')
     plt.plot(time_series[0,:count],np.rad2deg(rhonn[0,:count]), label='RHONN')
-    plt.plot(time_series[0,:count],np.rad2deg(ref[0,:count]), label='Reference')
+    # plt.plot(time_series[0,:count],np.rad2deg(ref[0,:count]), label='Reference')
     plt.xlabel('Time (s)')
     plt.ylabel('Position')
     plt.title('Position vs. Time')
@@ -249,7 +62,7 @@ def plot_data(count,time_series,sensor,rhonn,ref,error,ref2,z1,z2):
     # plt.plot(time_series[0,:count],np.rad2deg(ref2[0,:count]), label='X1d')
     plt.xlabel('Time (s)')
     plt.ylabel('Velocity')
-    plt.title('Position vs. Time')
+    plt.title('Velocity vs. Time')
     plt.legend(loc='best')
     plt.grid()
 
@@ -296,7 +109,201 @@ def plot_data(count,time_series,sensor,rhonn,ref,error,ref2,z1,z2):
     plt.legend(loc='best')
     plt.grid()
 
-    plt.show()
+    plt.show() """
+
+def my_node():
+
+    global position, velocity, position_rhonn, velocity_rhonn, effort, time_now, k, w11, w12, w21, w22
+
+    dt = 0.001 #0.0025
+    k = 0
+    duration = 50
+    samples = int(duration/dt) + 1
+    X = np.zeros((2,samples))
+    XN = np.zeros((2,samples + 1))
+    u = np.zeros((1,samples + 1))
+    time_sim = np.zeros((1,samples + 2))
+    time_planner = np.ones((1,samples + 2))
+    time_now = 0.0
+    y = np.zeros((1,samples + 2))
+    z0 = np.zeros((1,samples + 1))
+    z1 = np.zeros((1,samples + 1))
+    s = np.ones((1,samples))
+    alpha = np.ones((1,samples))
+    v = np.ones((1,samples))
+    x1d = np.zeros((1,samples + 1))
+    name = ""
+    position = 0.0
+    velocity = 0.0
+    effort = 0.0
+    position_rhonn = 0.0
+    velocity_rhonn = 0.0
+    w11 = 0.0
+    w12 = 0.0
+    w13 = 1
+    w21 = 0.0
+    w22 = 0.0
+    w23 = 1
+
+
+    rospy.init_node('identifier', anonymous=True)
+
+    joint_index = rospy.get_param("~joint_index", 21)  # Default to 21
+
+    # topic_name = "/efforts/joint_{}".format(joint_index)
+    topic_name = "/reemc/efforts"
+
+    pub = rospy.Publisher(topic_name, WholeBodyState, queue_size=1)
+
+    # Use lambda to pass pub and joint_index to the callback
+    rospy.Subscriber('/reemc/rhonn', WholeBodyState, lambda data: rhonn_states_callback(data, joint_index), queue_size=1)
+
+    rospy.Subscriber('/robot_states', WholeBodyState, lambda data: robot_states_callback(data, joint_index), queue_size=1)
+
+    rate = rospy.Rate(100) 
+
+    while not rospy.is_shutdown():
+
+        if time_sim[0,k] != time_now:
+            k = k + 1
+        else:
+            k = k 
+
+        rospy.loginfo("Time passed {} control".format(time_sim[0,k]))
+
+        if time_sim[0,k] > duration:
+            rospy.signal_shutdown("Time over ...")
+        
+        time_sim[0,k] = time_now
+        time_sim[0,k+1] = time_sim[0,k] + dt
+        time_sim[0,k+2] = time_sim[0,k] + (2*dt)
+
+        #RHONN
+        X[0,k] = position
+        X[1,k] = velocity
+        XN[0,k] = position_rhonn
+        XN[1,k] = velocity_rhonn
+
+        #Planner
+
+        """ tetha_inicial = 0
+        tetha_final = np.deg2rad(50)
+        T = 1
+        x_delay = 1
+        time_planner[0,k] = time_sim[0,k] - x_delay
+        time_planner[0,k+1] = time_sim[0,k+1] - x_delay
+        time_planner[0,k+2] = time_sim[0,k+2] - x_delay
+
+        if time_sim[0,k] < 1:
+            y[0,k] = 0
+            y[0,k+1] = 0
+            y[0,k+2] = 0
+        elif time_sim[0,k] >= 1 and time_sim[0,k] <= T+x_delay:
+            y[0,k] = tetha_function(time_planner[0,k],tetha_inicial,tetha_final,T)
+            y[0,k+1] = tetha_function(time_planner[0,k+1],tetha_inicial,tetha_final,T)
+            y[0,k+2] = tetha_function(time_planner[0,k+2],tetha_inicial,tetha_final,T)
+        elif time_sim[0,k] > T+x_delay:
+            y[0,k] = tetha_final
+            y[0,k+1] = tetha_final
+            y[0,k+2] = tetha_final """
+        
+        tetha_inicial = 0
+        tetha_final = np.deg2rad(50)
+        T = 2
+        time_planner[0,k] = time_sim[0,k]
+        time_planner[0,k+1] = time_sim[0,k+1]
+        time_planner[0,k+2] = time_sim[0,k+2]
+
+        if time_sim[0,k] <= T:
+            y[0,k] = tetha_function(time_planner[0,k],tetha_inicial,tetha_final,T)
+            y[0,k+1] = tetha_function(time_planner[0,k+1],tetha_inicial,tetha_final,T)
+            y[0,k+2] = tetha_function(time_planner[0,k+2],tetha_inicial,tetha_final,T)
+        elif time_sim[0,k] > T:
+            y[0,k] = tetha_final
+            y[0,k+1] = tetha_final
+            y[0,k+2] = tetha_final
+
+        #Control
+
+        # Gains Lineal Control
+        k1 = 0.8 #-45
+        k2 = 0.1 #-2
+        k3 = 0
+        u0 = 12
+
+        # Gains Super-Twisting
+        # k1 = -6  #-75  #-6
+        # k2 = 0.7 #1.3  #0.7
+        # k3 = 0 #0.1  #0.1
+
+        #Block Control
+        z0[0,k] = X[0,k] - y[0,k]
+
+        z0[0,k+1] = XN[0,k] - y[0,k+1]
+
+        x1d[0,k] = (1.0/w13)*(-(w11*sgm(X[0,k])) - w12 + y[0,k+1] + (k1*z0[0,k]))
+
+        x1d[0,k+1] = (1.0/w13)*(-(w11*sgm(XN[0,k])) - w12 + y[0,k+2] + (k1*z0[0,k+1]))
+
+        z1[0,k] = X[1,k] - x1d[0,k]
+        
+        z1[0,k+1] = XN[1,k] - x1d[0,k+1]
+
+        # s[0,k] = z1[0,k+1]
+
+        # alpha[0,k+1] = alpha[0,k] + (dt*(-k3*np.sign(s[0,k])))
+
+        # v[0,k] = (-k2*np.sqrt(np.abs(s[0,k]))*np.sign(s[0,k])) + alpha[0,k]
+
+        """ if time_sim[0,k] < 1:
+            u[0,k+1] = 0.0
+        else:
+            #Lineal
+            ueq = (1.0/w23)*( -(w21*sgm(X[0,k])) - (w22*sgm(X[1,k])) + x1d[0,k+1] + k2*z1[0,k])
+            if np.abs(ueq) <= u0:
+                u[0,k+1] = ueq 
+            else:
+                u[0,k+1] = (u0*ueq)/np.abs(ueq) """
+        
+        u[0,k+1] = (1.0/w23)*( -(w21*sgm(X[0,k])) - (w22*sgm(X[1,k])) + x1d[0,k+1] + (k2*z1[0,k]))
+
+        
+        # u[0,k+1] = 0.05*np.sin(3*time_sim[0,k])
+
+        #Control Publisher
+        position_msg = WholeBodyState()
+        joint_estimation = JointState()
+        rhonn_estimation = RhonnState()
+
+        joint_estimation.name = name
+        joint_estimation.effort = u[0,k+1]
+        rhonn_estimation.z0 = z0[0,k]
+        rhonn_estimation.z1 = z1[0,k]
+        rhonn_estimation.reference = y[0,k]
+
+        position_msg.joints.append(joint_estimation)
+        position_msg.rhonn.append(rhonn_estimation)
+        position_msg.header.stamp = rospy.Time.now()
+        position_msg.time = time_sim[0,k]
+        pub.publish(position_msg)
+        
+
+        #if k >= samples-2:
+        """ if time_sim[0,k] >= (duration - dt):
+            joint_estimation.name = name
+            joint_estimation.effort = 0.15
+
+            position_msg.joints.append(joint_estimation)
+            position_msg.header.stamp = rospy.Time.now()
+            position_msg.time = time_sim[0,k]
+            pub.publish(position_msg)
+            rospy.signal_shutdown("Time over ...") """     
+
+        rate.sleep()
+
+    rospy.loginfo("Ending program")
+
+    # plot_data(samples,time_sim,X,XN,y,error,x1d,z0,z1,u)
 
 if __name__ == '__main__':
     try:

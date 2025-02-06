@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="whole_body_state_msgs" type="wbs_pub.py" name="wbs_pub_set" output="screen">
+    </node>
+
+    <!-- Add more nodes for additional joints -->
+</launch>

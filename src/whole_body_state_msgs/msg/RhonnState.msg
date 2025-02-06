@@ -19,4 +19,10 @@ float64 error_w1
 float64 error_w2
 float64 obs_position
 float64 obs_velocity
+float64 w11
+float64 w12
+float64 w21
+float64 w22
+float64 z0
+float64 z1
 float64 reference

@@ -1,0 +1,14 @@
+<launch>
+    <!-- Motor Node -->
+    <node pkg="descentralized_controller" type="motor_eqn.py" name="motor_sim" output="screen">
+        <param name="dt" value="0.001" />
+        <param name="duration" value="10" />
+    </node>
+
+    <!-- Neural Network Controller Node -->
+    <node pkg="descentralized_controller" type="all_for_one_block_control.py" name="identificator_joint_0" output="screen">
+        <param name="joint_index" value="0" />
+        <param name="dt" value="0.001" />
+        <param name="duration" value="10" />
+    </node>
+</launch>
